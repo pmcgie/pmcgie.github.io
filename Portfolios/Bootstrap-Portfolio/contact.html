@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Portfolio: Paul McGie</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Merriweather|Slabo+27px" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Crimson+Text" rel="stylesheet">
+</head>
+
+<!--Apply Background image-->
+<style type = "text/css">
+    body{
+        background-image: url('Assets/Pictures/dust_scratches.png');
+    }
+</style>
+
+<body>
+
+        <!--Main Header-->
+        <nav class="navbar navbar-default navbar-static-top" style="border-bottom: 2px solid black; background-color: #007bff!important;">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand float-right" href="index.html" style="margin-left: 20px; font-size: 30px; font-family: 'Slabo 27px', serif;color: #fff!important;"><strong>Paul McGie</strong></a>
+                </div>
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav navbar-right" style="font-family: 'Merriweather', serif;">
+                        <li><a href="index.html" style="padding-right: 20px; color: #fff!important;">About</a></li>
+                        <li><a href="contact.html" style="padding-right: 20px; color: #fff!important;">Contact</a></li>
+                        <li><a href="portfolio.html" style="padding-right: 100px; color: #fff!important;">Portfolio</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+
+        <form method="post" action="contact.php" role="form" style="margin-left: 10px;; margin-right: 10px;">
+
+            <div class="messages"></div>
+        
+            <div class="controls">
+        
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="form_name">Firstname *</label>
+                            <input type="text" name="name" class="form-control" placeholder="Please enter your firstname *" required="required" data-error="Firstname is required.">
+                            <div class="help-block with-errors"></div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="form_lastname">Lastname *</label>
+                            <input type="text" name="surname" class="form-control" placeholder="Please enter your lastname *" required="required" data-error="Lastname is required.">
+                            <div class="help-block with-errors"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="form_email">Email *</label>
+                            <input type="email" name="email" class="form-control" placeholder="Please enter your email *" required="required" data-error="Valid email is required.">
+                            <div class="help-block with-errors"></div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="form_phone">Phone</label>
+                            <input type="tel" name="phone" class="form-control" placeholder="Please enter your phone">
+                            <div class="help-block with-errors"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-10">
+                        <div class="form-group">
+                            <label for="form_message">Message *</label>
+                            <textarea name="message" class="form-control" placeholder="Message for me *" rows="4" required="required" data-error="Please,leave us a message."></textarea>
+                            <div class="help-block with-errors"></div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <input type="submit" class="btn btn-success btn-send" value="Send message">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <p class="text-muted"><strong>*</strong> These fields are required</p>
+                    </div>
+                </div>
+            </div>
+            
+        </form>
+
+
+
+    <!--[ footer ] -->
+    <div class="containter footer-copyright py-3 text-center" style="background-color: black; color:#ffffff; bottom: 0; position: fixed; width: 100%;">
+            © 2018 Copyright
+    </div>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+
+</body>
