@@ -456,7 +456,7 @@ footer {
     }
 
     #HeaderSection{
-        width: 640px;
+        width: auto;
         margin: auto;   
     }
 
@@ -467,7 +467,6 @@ footer {
     #About{
         float:left;
         width:10%;
-        border-right: .5px solid #cccccc;
         margin-left: 200px;
         text-align: center;
         color: inherit;
@@ -478,7 +477,7 @@ footer {
         float: left;
         width:10%;
         margin-left: 10px;
-        border-right: .5px solid #cccccc;
+        margin-right: 10px;
         color: inherit;
         padding: 15px 0px 15px 0px;
     }
@@ -597,7 +596,7 @@ footer {
     }
     
     #ContactContent{
-        padding-bottom: 40px;
+        padding-bottom: 400px;
         margin-top: 100px;
         color:#777777;
         background-color: #ffffff;
@@ -614,8 +613,8 @@ footer {
     }
     
     #PortfolioContent {
-        padding-bottom: 450px;
-        margin-top: 100px;
+        padding-bottom: 800px;
+        margin: 100px 10px 10px 10px;
         color:#777777;
         background-color: #ffffff;
         border:1px solid #dddddd;
@@ -627,7 +626,7 @@ footer {
         float: left;
         margin: 5px 10px 5px 30px;
         padding: 40px 0px 15px 0px;
-        width: 30%;
+        width: 80%;
         background-color: gray;
         color: white;
         text-align: center;
