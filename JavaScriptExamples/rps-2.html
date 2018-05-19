@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Rock Paper Scissors Part 2
+  </title>
+</head>
+
+<body>
+
+  <div id="game">
+
+  </div>
+
+  <script type="text/javascript">
+
+    // Creates an array that lists out all of the options (Rock, Paper, or Scissors).
+    var computerChoices = ["r", "p", "s"];
+    
+    //Set up initial variables
+    var wins = 0;
+    var losses = 0;
+    var ties = 0;
+
+
+    // This function is run whenever the user presses a key.
+      document.onkeyup = function(event){
+
+      // Determines which key was pressed.
+      var userGuess = event.key;
+
+      // Randomly chooses a choice from the options array. This is the Computer's guess.
+      var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
+
+      
+      //Determine Outcomes
+      if (userGuess == computerGuess) {
+        ties = ties + 1;
+      }
+      else if (userGuess == "r" && computerGuess == "s") {
+        wins = wins + 1;
+      }
+      else if (userGuess == "s" && computerGuess == "p") {
+        wins = wins + 1;
+      }
+      else if (userGuess == "p" && computerGuess == "r") {
+        wins = wins + 1;
+      }
+      else if (computerGuess == "r" && userGuess == "s") {
+        losses = losses + 1;
+      }
+      else if (computerGuess == "s" && userGuess == "p") {
+        losses = losses + 1;
+      }
+      else if (computerGuess == "p" && userGuess == "r") {
+        losses = losses + 1;
+      }
+
+      // Alerts the key the user pressed (userGuess).
+      alert("User guess: " + userGuess);
+
+      // Alerts the Computer's guess.
+      alert("Computer guess: " + computerGuess);
+
+      //Display Results
+      document.write("User guess: " + userGuess + "<br/>");
+      document.write("Computer guess: " + computerGuess + "<br/>");
+      document.write("wins: " + wins + "<br/>");
+      document.write("losses: " + losses + "<br/>");
+      document.write("ties: " + ties + "<br/>");
+
+    }
+
+  </script>
+
+</body>
+
+</html>
