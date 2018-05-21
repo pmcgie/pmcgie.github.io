@@ -11,3 +11,11 @@ body{
     background-image: url('../images/background02.png');
     color: aliceblue;
 }
+
+#StyleMiniHeading{
+    font-size: 20px;
+    background-color: rgb(9, 191, 197);
+    text-align: center;
+}
+
+

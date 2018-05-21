@@ -14,7 +14,7 @@
     <link type="text/javascript" src="assets/javascript/game.js">
 
     <!--Font Links-->
-    <link href="https://fonts.googleapis.com/css?family=Anton" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Anton|IM+Fell+French+Canon+SC" rel="stylesheet">
   </head>
 
 <body>
@@ -29,15 +29,28 @@
 
   <br style="margin-top:20px;">
 
-  <!--Layout for embedded video, stat tracking, game status, etc.-->
+  <!--Message -->
   <div class="container">
-    <div class="row justify-content-md-center">
-      <div class="col col-lg-2" style="background-color: white;">
-          
+    <div class="container" style="color: white;">
+      <div class="row justify-content-md-center">
+        <div class="col-md-6">
+          <p id = "StyleMiniHeading" style="font-family: 'IM Fell French Canon SC', serif;">Press Any Key to get started!</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="container" style="color: white;">
+      <div class="col-md-6">
+          <p>Below are all the letters that have been used:</p>
+          <div id="LettersUsed"></div>
+          <br>
+          <br>
+          <div id="RemainingGuess"></div>
       </div>
     </div>
   </div>
 
+  <!--Run Script-->
   <script type="text/javascript" src="assets/javascript/game.js"></script> 
 
 </body>
