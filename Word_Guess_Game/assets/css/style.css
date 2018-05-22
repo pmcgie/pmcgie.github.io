@@ -1,14 +1,14 @@
 body{
     width: 100%;
     margin: auto;
-    background-image: url('../images/background03.png');
+    background-image: url('../images/Background03.png');
     background-size: 100%;
 }
 
 #HangmanCover {
     margin-top: 100px;
     text-align: center;
-    background-image: url('../images/background02.png');
+    background-image: url('../images/Background02.png');
     color: aliceblue;
 }
 

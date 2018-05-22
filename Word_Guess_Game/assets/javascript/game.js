@@ -1,5 +1,6 @@
 //Create Initial Variables
 var Wins;
+var Losses;
 var Movie;
 var Guesses_Remaining;
 var Guesses_Correct;
@@ -166,7 +167,7 @@ function Playtime() {
         var TrackRecord =
             "<br>" +
             "<br>" +
-            "<p>Wins: " + '&nbsp &nbsp &nbsp &nbsp &nbsp' + "Losses: " + "</p>";
+            "<p>Wins: " + Wins + '&nbsp &nbsp &nbsp &nbsp &nbsp' + "Losses: " + Losses + "</p>";
 
         //Populate Entries
         document.querySelector("#Guesses").innerHTML = Guesses;
