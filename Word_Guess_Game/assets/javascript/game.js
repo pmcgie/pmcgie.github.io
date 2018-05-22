@@ -6,15 +6,35 @@ var Guesses_Correct;
 var Guesses_Wrong;
 var Letters_Guessed;
 var MovieNum;
+var WordChar;
+var WordDisplay = ' ';
 
 //This initializes game
 function StartGame () {
     MovieNum = Math.floor(Math.random() * MovieList.length)
     Movie = MovieList[MovieNum].Title;
-    Guesses_Remaining = 13;
+    Guesses_Remaining = 10;
     Letters_Guessed = [];
     Guesses_Correct = [];
     Guesses_Wrong = [];
+    console.log(Movie);
+
+    for (i=0;i < Movie.length;i++) {
+        WordChar = Movie.charAt(i);
+
+        if (WordChar === ' ') {
+            WordDisplay = WordDisplay + '&nbsp &nbsp &nbsp';
+        } else {
+            WordDisplay = WordDisplay + "_ ";
+        }
+    }
+    console.log(WordDisplay);
+}
+
+function Correct(Movie,userGuess) {
+    for (i=0;i < Movie.length;i++) {
+        
+    }
 }
 
 //Multidimensional Movie List
@@ -107,36 +127,43 @@ function isLetter(str) {
 }
 
 //Runs Script once browser opens
-StartGame();
-var Movie_Str = Movie.toLowerCase();
+document.body.onkeyup = function(e){
+    if(e.keyCode == 32){
+        StartGame();
+        Playtime();
+    }
+}
 
-document.onkeyup = function(event) {
-    
-    //User Enters Letter
-    var userGuess = event.key;
-    
-    //Check to see if is a letter and has already been guessed
-    if (Letters_Guessed.includes(userGuess)==false && isLetter(userGuess)) {
-        Letters_Guessed.push(userGuess)
+function Playtime() {
+    document.onkeyup = function(event) {
         
-        console.log(Letters_Guessed);
-        console.log(userGuess);
+        //User Enters Letter
+        var userGuess = event.key;
         
-        //Checks to see if letter is contained in Movie Title
-        if (Movie.includes(userGuess)) {
-            alert("You got one");
+        //Check to see if is a letter and has already been guessed
+        if (Letters_Guessed.includes(userGuess)==false && isLetter(userGuess)) {
+            Letters_Guessed.push(userGuess)
+            
+            //Checks to see if letter is contained in Movie Title
+            if (Movie.includes(userGuess)) {
+                Correct(Movie,userGuess);
+            } else {
+                Guesses_Remaining--;
+            }
         }
 
+        //Populate Guesses into HTML
+        var Guesses = 
+            "<p>Below are all the letters that have been used:</p>"+
+            Letters_Guessed +
+            "<br>" +
+            "<br>" +
+            "<p>Remaining Guesses: " + Guesses_Remaining + "</p>" +
+            "<br>" +
+            "<br>" + 
+            "<p>Try to guess word: " + WordDisplay + "</p>";
+
+        //Populate Entries
+        document.querySelector("#Guesses").innerHTML = Guesses;
     }
-
-    //Populate Entry into HTML
-    var LetterUsed = Letters_Guessed
-
-    var RemainingGuesses = 
-        "<p>Remaining Guesses: ";
-
-    //Populate Entries
-    document.querySelector("#LettersUsed").innerHTML = LetterUsed;
-    document.querySelector("#RemainingGuess").innerHTML = RemainingGuesses;
-
 }
