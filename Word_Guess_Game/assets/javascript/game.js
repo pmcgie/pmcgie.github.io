@@ -7,7 +7,7 @@ var Guesses_Wrong;
 var Letters_Guessed;
 var MovieNum;
 var WordChar;
-var WordDisplay = ' ';
+var WordDisplay;
 
 //This initializes game
 function StartGame () {
@@ -17,7 +17,7 @@ function StartGame () {
     Letters_Guessed = [];
     Guesses_Correct = [];
     Guesses_Wrong = [];
-    console.log(Movie);
+    WordDisplay = ' ';
 
     for (i=0;i < Movie.length;i++) {
         WordChar = Movie.charAt(i);
@@ -162,8 +162,14 @@ function Playtime() {
             "<br>" +
             "<br>" + 
             "<p>Try to guess word: " + WordDisplay + "</p>";
+        
+        var TrackRecord =
+            "<br>" +
+            "<br>" +
+            "<p>Wins: " + '&nbsp &nbsp &nbsp &nbsp &nbsp' + "Losses: " + "</p>";
 
         //Populate Entries
         document.querySelector("#Guesses").innerHTML = Guesses;
+        document.querySelector("#TrackRecord").innerHTML = TrackRecord;
     }
 }
