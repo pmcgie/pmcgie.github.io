@@ -85,6 +85,22 @@ var MovieList = [
         Link: "",
     }
     , {
+        Title: "Terminator",
+        Link: "",
+    }
+    , {
+        Title: "Dances with Wolves",
+        Link: "",
+    }
+    , {
+        Title: "Toy Story",
+        Link: "",
+    }
+    , {
+        Title: "Ghostbusters",
+        Link: "",
+    }
+    , {
         Title: "Ex Machina",
         Link: "",
     }
@@ -92,6 +108,7 @@ var MovieList = [
         Title: "Looper",
         Link: "",
     },
+
 ];
 
 //Function to check if entry is a letter
@@ -111,7 +128,7 @@ document.body.onkeyup = function(e){
 function StartGame () {
     MovieNum = Math.floor(Math.random() * MovieList.length)
     Movie = MovieList[MovieNum].Title.toLowerCase();
-    Guesses_Remaining = 10;
+    Guesses_Remaining = 5;
     Letters_Guessed = [];
     Guesses_Correct = [];
     WordDisplay = ' ';
@@ -144,7 +161,6 @@ function Reveal(Movie,Guesses_Correct) {
     //If all of the word displays then user wins!
     if (WordLength === Movie.length) {
         Wins++;
-        Showtime(Movie[MovieNum].Link);
         StartGame();
         Playtime();
     }
@@ -187,12 +203,14 @@ function Playtime() {
             "<p>Remaining Guesses: " + Guesses_Remaining + "</p>" +
             "<br>" +
             "<br>" + 
-            "<p>Try to guess word: &nbsp" + WordDisplay + "</p>";
+            "<p>Try to guess word: &nbsp" + "<br>" +
+            WordDisplay + "</p>";
         
         var TrackRecord =
             "<br>" +
             "<br>" +
             "<p>Wins: " + Wins + '&nbsp &nbsp &nbsp &nbsp &nbsp' + "Losses: " + Losses + "</p>";
+            
 
         document.querySelector("#Guesses").innerHTML = Guesses;
         document.querySelector("#TrackRecord").innerHTML = TrackRecord;
