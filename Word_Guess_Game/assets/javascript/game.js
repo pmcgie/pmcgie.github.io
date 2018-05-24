@@ -1,42 +1,14 @@
 //Create Initial Variables
-var Wins;
-var Losses;
+var Wins = 0;
+var Losses = 0;
 var Movie;
 var Guesses_Remaining;
 var Guesses_Correct;
-var Guesses_Wrong;
 var Letters_Guessed;
 var MovieNum;
 var WordChar;
 var WordDisplay;
-
-//This initializes game
-function StartGame () {
-    MovieNum = Math.floor(Math.random() * MovieList.length)
-    Movie = MovieList[MovieNum].Title;
-    Guesses_Remaining = 10;
-    Letters_Guessed = [];
-    Guesses_Correct = [];
-    Guesses_Wrong = [];
-    WordDisplay = ' ';
-
-    for (i=0;i < Movie.length;i++) {
-        WordChar = Movie.charAt(i);
-
-        if (WordChar === ' ') {
-            WordDisplay = WordDisplay + '&nbsp &nbsp &nbsp';
-        } else {
-            WordDisplay = WordDisplay + "_ ";
-        }
-    }
-    console.log(WordDisplay);
-}
-
-function Correct(Movie,userGuess) {
-    for (i=0;i < Movie.length;i++) {
-        
-    }
-}
+var userGuess;
 
 //Multidimensional Movie List
 var MovieList = [
@@ -135,6 +107,51 @@ document.body.onkeyup = function(e){
     }
 }
 
+//This initializes game
+function StartGame () {
+    MovieNum = Math.floor(Math.random() * MovieList.length)
+    Movie = MovieList[MovieNum].Title.toLowerCase();
+    Guesses_Remaining = 10;
+    Letters_Guessed = [];
+    Guesses_Correct = [];
+    WordDisplay = ' ';
+    userGuess = '';
+
+    Reveal(Movie,userGuess);
+}
+
+//Updates Word Display for Game
+function Reveal(Movie,Guesses_Correct) {
+
+    WordDisplay = ' ';
+    WordLength = 0;
+
+    for (i=0;i < Movie.length;i++) {
+
+        WordChar = Movie.charAt(i);
+
+        if (Guesses_Correct.includes(WordChar,0)) {
+            WordDisplay = WordDisplay + WordChar;
+            WordLength++;
+        } else if (WordChar === ' ') {
+            WordDisplay = WordDisplay + '&nbsp';
+            WordLength++;
+        } else {
+            WordDisplay = WordDisplay + "_ ";
+        }
+    }
+
+    //If all of the word displays then user wins!
+    if (WordLength === Movie.length) {
+        Wins++;
+        Showtime(Movie[MovieNum].Link);
+        StartGame();
+        Playtime();
+    }
+
+}
+
+//Game Officially Starts, user can start to enter letters
 function Playtime() {
     document.onkeyup = function(event) {
         
@@ -147,13 +164,21 @@ function Playtime() {
             
             //Checks to see if letter is contained in Movie Title
             if (Movie.includes(userGuess)) {
-                Correct(Movie,userGuess);
+                Guesses_Correct.push(userGuess);
+                Reveal(Movie,Guesses_Correct);
             } else {
                 Guesses_Remaining--;
             }
         }
 
-        //Populate Guesses into HTML
+        //Checks to see guesses balance, <=0 means game lost, start again
+        if (Guesses_Remaining <= 0) {
+            Losses++;
+            StartGame();
+            Playtime();
+        }
+
+        //Update HTML
         var Guesses = 
             "<p>Below are all the letters that have been used:</p>"+
             Letters_Guessed +
@@ -162,14 +187,13 @@ function Playtime() {
             "<p>Remaining Guesses: " + Guesses_Remaining + "</p>" +
             "<br>" +
             "<br>" + 
-            "<p>Try to guess word: " + WordDisplay + "</p>";
+            "<p>Try to guess word: &nbsp" + WordDisplay + "</p>";
         
         var TrackRecord =
             "<br>" +
             "<br>" +
             "<p>Wins: " + Wins + '&nbsp &nbsp &nbsp &nbsp &nbsp' + "Losses: " + Losses + "</p>";
 
-        //Populate Entries
         document.querySelector("#Guesses").innerHTML = Guesses;
         document.querySelector("#TrackRecord").innerHTML = TrackRecord;
     }
