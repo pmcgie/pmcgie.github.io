@@ -10,22 +10,22 @@ var WordChar;
 var WordDisplay;
 var userGuess;
 
-//Multidimensional Movie List
+//Multidimensional Movie List (future state: movie preview plays if user wins)
 var MovieList = [
     {
-        Title: "Jurassic Park",
+        Title: "Disturbia",
         Link: "",
         }
     , {
-        Title: "Avengers",
+        Title: "A Few Good Men",
         Link: "",
         }
     , {
-        Title: "Star Wars",
+        Title: "Gattica",
         Link: "",
         }
     , {
-        Title: "The Lion King",
+        Title: "Aladdin",
         Link: "",
         }
     , {
@@ -33,11 +33,11 @@ var MovieList = [
         Link: "",
         }
     , {
-        Title: "The Fifth Element",
+        Title: "Godzilla",
         Link: "",
         }
     , {
-        Title: "The Shawshank Redemption",
+        Title: "Super Troopers",
         Link: "",
         }
     , {
@@ -45,7 +45,7 @@ var MovieList = [
         Link: "",
     }
     , {
-        Title: "Back to the Future",
+        Title: "Iron Man",
         Link: "",
     }
     , {
@@ -53,35 +53,35 @@ var MovieList = [
         Link: "",
     }
     , {
-        Title: "Chocolat",
+        Title: "Batman Begins",
         Link: "",
     }
     , {
-        Title: "Forrest Gump",
+        Title: "King Kong",
         Link: "",
     }
     , {
-        Title: "The Dark Knight",
+        Title: "Dangerous Minds",
         Link: "",
     }
     , {
-        Title: "The Matrix",
+        Title: "Karate Kid",
         Link: "",
     }
     , {
-        Title: "War of the Worlds",
+        Title: "Beetle Juice",
         Link: "",
     }
     , {
-        Title: "Arrival",
+        Title: "Wizard of Oz",
         Link: "",
     }
     , {
-        Title: "Avatar",
+        Title: "Dark City",
         Link: "",
     }
     , {
-        Title: "Planet of the Apes",
+        Title: "Zoolander",
         Link: "",
     }
     , {
@@ -89,7 +89,7 @@ var MovieList = [
         Link: "",
     }
     , {
-        Title: "Dances with Wolves",
+        Title: "Wedding Crashers",
         Link: "",
     }
     , {
@@ -101,11 +101,11 @@ var MovieList = [
         Link: "",
     }
     , {
-        Title: "Ex Machina",
+        Title: "Tron",
         Link: "",
     }
     , {
-        Title: "Looper",
+        Title: "Braveheart",
         Link: "",
     },
 
