@@ -74,31 +74,73 @@
 
 
 var curString = '';
+var loggedOperator = '';
+var Cycle = 1;
+var firstVal = 0;
+var secondVal =0;
+
 $(document).ready(function() {
 
 // Your code here...
 
-
+//Trigger initial event
 $(".btn").click(function() {
   var loggedNum = $(this).attr("value");
   var valNum = parseInt(loggedNum);
 
-  if (Number.isInteger(valNum)) {
-    curString = curString+ loggedNum;
-    console.log(curString);
+  //Bring in First Number
+  if (Number.isInteger(valNum) && Cycle ===1) {
+    curString = curString + loggedNum;
+    firstVal = parseInt(curString);
     $("#first-number").html(curString);
   }
 
-  if ($(this).hasClass("operator")) {
-    
+  //Bring in Operator
+  if ($(this).hasClass("operator") && Cycle ===1) {
+    loggedOperator = $(this).attr("value");
+    var operatorSymbol = this.querySelector('h1').innerText;
+    $("#operator").html(operatorSymbol);
+    Cycle = 2;
+    curString = '';
+  }
+
+  //Bring in Second Number
+  if (Number.isInteger(valNum) && Cycle ===2) {
+    curString = curString + loggedNum;
+    secondVal = parseInt(curString);
+    $("#second-number").html(curString);
+    Cycle = 3;
+    curString = '';
+  }
+
+  //Calculate Equals
+  if($(this).hasClass("equal") && Cycle ===3) {
+    if (loggedOperator ==="times") {
+      $("#result").html(firstVal*secondVal);
+    }
+    if (loggedOperator ==="divide") {
+      $("#result").html(firstVal/secondVal);
+    }
+    if (loggedOperator ==="plus") {
+      $("#result").html(firstVal + secondVal);
+    }
+    if (loggedOperator ==="minus") {
+      $("#result").html(firstVal - secondVal);
+    }
+    if (loggedOperator ==="power") {
+      $("#result").html(Math.pow(firstVal, secondVal));
+    }
+
+  }
+
+
+  //Clear content and start over
+  if ($(this).hasClass("clear")) {
+    Cycle = 1;
+    $("#first-number, #operator, #second-number, #result").empty();
   }
 
  })
-
- //check type: is operator? This w
-
-
-
 
 });
 
