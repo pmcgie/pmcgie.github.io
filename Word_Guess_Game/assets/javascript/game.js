@@ -134,6 +134,7 @@ function StartGame () {
     WordDisplay = ' ';
     userGuess = '';
 
+    console.log(Movie);
     Reveal(Movie,userGuess);
 }
 
@@ -159,6 +160,8 @@ function Reveal(Movie,Guesses_Correct) {
     }
 
     //If all of the word displays then user wins!
+    console.log(WordLength)
+    console.log(Movie.length)
     if (WordLength === Movie.length) {
         Wins++;
         StartGame();
