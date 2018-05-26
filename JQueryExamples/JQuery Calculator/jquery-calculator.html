@@ -109,12 +109,10 @@ $(".btn").click(function() {
     curString = curString + loggedNum;
     secondVal = parseInt(curString);
     $("#second-number").html(curString);
-    Cycle = 3;
-    curString = '';
   }
 
   //Calculate Equals
-  if($(this).hasClass("equal") && Cycle ===3) {
+  if($(this).hasClass("equal") && Cycle ===2) {
     if (loggedOperator ==="times") {
       $("#result").html(firstVal*secondVal);
     }
@@ -130,6 +128,8 @@ $(".btn").click(function() {
     if (loggedOperator ==="power") {
       $("#result").html(Math.pow(firstVal, secondVal));
     }
+    Cycle = 3;
+    curString = '';
 
   }
 
