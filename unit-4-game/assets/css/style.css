@@ -1,0 +1,22 @@
+.Title {
+    background-image: url('../images/IndyTitleBackground.png');
+    padding: 100px 0px 100px 0px;
+    background-size: 100% 100%;
+}
+
+#titleImage {
+    height: 60%;
+    width: 75%;
+    border: 2px solid black;
+    border-radius: 4px; 
+    transform: skew(20deg);
+}
+
+#objectImages {
+    height: 60%;
+    width: 75%;
+}
+
+.Numbers {
+    padding: 40px 0px 40px;
+}
