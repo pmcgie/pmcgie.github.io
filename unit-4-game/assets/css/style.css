@@ -1,7 +1,12 @@
 .Title {
     background-image: url('../images/IndyTitleBackground.png');
-    padding: 100px 0px 100px 0px;
+    padding: 40px 0px 40px 0px;
     background-size: 100% 100%;
+}
+
+#PrimaryBackground {
+    background-image: url('../images/GameBackground02.png');
+    background-size: cover;
 }
 
 #titleImage {
@@ -12,11 +17,31 @@
     transform: skew(20deg);
 }
 
-#objectImages {
-    height: 60%;
-    width: 75%;
+#Backdrop01 {
+    /*background-color: aliceblue;*/
+    color: white;
+    margin-bottom: 20px;
+    padding-top: 20px;
+    border-radius: 10px;
+    border-color: 1px whitesmoke;
+    border-style: dotted;
 }
 
-.Numbers {
-    padding: 40px 0px 40px;
+#Backdrop02 {
+    margin:30px 0px 20px 0px;
+    background-color: aliceblue;
+    border-color: 1px whitesmoke;
+    border-radius: 10px;
+    padding: 10px;
+    border-style: ridge;
 }
+
+#objectImages {
+    height: 20px;
+    width: 20px;
+}
+
+#GameSpacing {
+    margin-top:20px;
+}
+

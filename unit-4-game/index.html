@@ -31,78 +31,82 @@
 <body>
 
     <!--Bring in Audio of Theme Song-->
-    <audio autoplay loop controls>
-        <source src="assets/audio/IndianaJonesTheme.mp3" type="audio/mpeg">
-    </audio>
-
-    <!--Game Title Layout-->
-    <div class="jumbotron  jumbotron-fluid Title">
-        <div class="container">
-            <h1><i class="fas fa-compass"></i> <img id ="titleImage" src="assets/images/HeaderImage.png" /> <i class="fas fa-compass"></i></h1>   
-        </div>
+    <div style="background-color: black;">
+        <audio autoplay loop controls>
+            <source src="assets/audio/IndianaJonesTheme.mp3" type="audio/mpeg">
+        </audio>
     </div>
 
+    <!--Game Title Layout-->
+    <div  id="PrimaryBackground">
+        <div class="jumbotron  jumbotron-fluid Title">
+            <div class="container">
+                <h1><i class="fas fa-compass"></i> <img id ="titleImage" src="assets/images/HeaderImage.png" /> <i class="fas fa-compass"></i></h1>   
+            </div>
+        </div>
+    
     
 
-    <!--Create Intro and Instructions-->
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6">
-                <!--Storyline-->
-                <div>
-                    <h5>Story:</h5>
-                    <p>Welcome to the crystal collector game: Indiana Jones Style!</p>
-                    <p>As Indy goes on a journey to find the crystals in the "Coding Temple of Doom", he has to figure out the right amount 
-                        to take, otherwise he will be stuck in an infinite (aka while) loop of doom.
-                        In order to survive, he must be calculated on how many crystals he takes!
-                    </p>
+        <!--Create Intro and Instructions-->
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6"  id="Backdrop01">
+                    <!--Storyline-->
+                    <div>
+                        <h5>Story:</h5>
+                        <p>Welcome to the crystal collector game: Indiana Jones Style!</p>
+                        <p>As Indy goes on a journey to find the crystals in the "Coding Temple of Doom", he has to figure out the right amount 
+                            to take, otherwise he will be stuck in an infinite (aka while) loop of doom.
+                            In order to survive, he must be calculated on how many crystals he takes!
+                        </p>
+                    </div>
+                    <!--Rules to the Game-->
+                    <div>
+                        <h5>Rules to the Game:</h5>
+                        <p>You will be given a random number at the start of the game.</p>
+                        <p>There are four crystals below. By clicking on a crystal you will add a specific amount
+                            of points to your total score.
+                        </p>
+                        <p>You win the game by matching your total score to the target score.
+                            You lose the game if your score goes above the target number.
+                        </p>
+                        <p>The value of each crystal is hidden from you until you click on it</p>
+                        <p>Each time when the game starts, the game will change the value of each crystal as
+                            as well as generate a new target value.
+                        </p>
+                    </div>
                 </div>
-                <!--Rules to the Game-->
-                <div>
-                    <h5>Rules to the Game:</h5>
-                    <p>You will be given a random number at the start of the game.</p>
-                    <p>There are four crystals below. By clicking on a crystal you will add a specific amount
-                        of points to your total score.
-                    </p>
-                    <p>You win the game by matching your total score to the target score.
-                        You lose the game if your score goes above the target number.
-                    </p>
-                    <p>The value of each crystal is hidden from you until you click on it</p>
-                    <p>Each time when the game starts, the game will change the value of each crystal as
-                        as well as generate a new target value.
-                    </p>
-                </div>
-            </div>
-            <div class="col-md-1"></div>
-            <div class="col-md-5">
-                <div class="row">
+                <div class="col-md-1"></div>
+                <div class="col-md-5">
+                    <div class="row" id="Backdrop02">
+                        <div class="col-md-10" id="GameSpacing"><h4 id="Target-Number">Number to Guess:</h4></div>
+                    </div>
 
-                    <!--Create header and framework for Target Number, Wins and Losses-->
-                    <div class="col-md-8"><h4>Number to Guess</h4></div>
-                    <div class="col-md-2" id="Wins">Wins:</div>
-                    <div class="col-md-8 Numbers" id="Target-Number"></div>
-                    <div class="col-md-2" id="Losses">Losses</div>
+                    <div class="row" id="Backdrop02">
+                        <div class="col-md-10" id="GameSpacing"><h4 id= "User-Number">Total Score:</h4></div>
+                    </div>
 
-                </div>
-
-                <div class="row">
-
-                    <div class="col-md-1"></div>
-                    <button id="button-1" class="btn col-md-2" value="ruby"><img id = "objectImages" src="assets/images/Ruby.png" ></button>
-                    <div class="col-md-1"></div>
-                    <button id="button-1" class="btn col-md-2" value="emerald"><img id ="objectImages" src="assets/images/Emerald.png" ></button>
-                    <div class="col-md-1"></div>
-                    <button id="button-1" class="btn col-md-2" value="sapphire"><img id ="objectImages" src="assets/images/Sapphire.png" ></button>
-                    <div class="col-md-1"></div>
-                    <button id="button-1" class="btn col-md-2" value="gold"><img id ="objectImages" src="assets/images/Gold.png" ></button>
                     
-                </div>
 
-                <div class="row">
-                    <h4 class="col-md-8" style="margin-top: 20px;">Total Score</h4>
-                    <div class="col-md-8 Numbers" id="User-Number"></div>
+                    <div class="row" id="Backdrop02">
+
+                        <button id="button-1" class="btn col-md-2" value="ruby"><img id = "objectImages" src="assets/images/Ruby.png" ></button>
+                        <div class="col-md-1"></div>
+                        <button id="button-1" class="btn col-md-2" value="emerald"><img id ="objectImages" src="assets/images/Emerald.png" ></button>
+                        <div class="col-md-1"></div>
+                        <button id="button-1" class="btn col-md-2" value="sapphire"><img id ="objectImages" src="assets/images/Sapphire.png" ></button>
+                        <div class="col-md-1"></div>
+                        <button id="button-1" class="btn col-md-2" value="gold"><img id ="objectImages" src="assets/images/Gold.png" ></button>
+                        <div class="col-md-1"></div>
+
+                    </div>
+
+                    <div class="row" id="Backdrop02">
+                        <h5 class="col-md-4" style="float: right;" id="Wins">Wins:</h5>
+                        <h5 class="col-md-4" style="float: right;" id="Losses">Losses:</h5>
+                    </div>
+            
                 </div>
-        
             </div>
         </div>
     </div>
