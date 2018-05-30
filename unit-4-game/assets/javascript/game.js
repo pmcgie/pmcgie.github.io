@@ -1,8 +1,15 @@
+//Need to autoplay indy song
+//Change font styles (use google fonts)
+
 //Initial Variables
 var Wins = 0;
 var Losses = 0;
+var totalClicks = 0;
 var userTotal;
 var targetNum;
+var numClicks;
+var aveClicks;
+
 
 //Functions.................................................
 //Initial Game Kickoff
@@ -10,6 +17,7 @@ function StartGame () {
 
     //Set Target Number
     targetNum =  Math.floor(Math.random() * 120) + 19;
+    numClicks = 0;
     $("#Target-Number").html("Number to Guess: " + targetNum);
     
     //Reset total score
@@ -36,6 +44,11 @@ $(document).ready(function(){
         var clickedVal = $(this).attr("value");
         var valNum = parseInt(clickedVal);
 
+        numClicks++;
+        totalClicks++;
+        $("#totalClicks").html("Total Clicks: " + totalClicks);
+        $("#gameClicks").html("Game Clicks: " + numClicks);
+
         userTotal = userTotal + valNum;
         $("#User-Number").html("Total Score: " + userTotal);
 
@@ -46,10 +59,15 @@ $(document).ready(function(){
             if (userTotal===targetNum) {
                 Wins++;
                 $("#Wins").html("Wins: " + Wins);
+                aveClicks = totalClicks/(Wins + Losses);
+                $("#aveClicks").html("Ave Clicks Per Game: " + aveClicks);
                 StartGame();
+
             } else if (userTotal>targetNum) {
                 Losses++;
                 $("#Losses").html("Losses: " + Losses);
+                aveClicks = totalClicks/(Wins + Losses);
+                $("#aveClicks").html("Ave Clicks Per Game: " + aveClicks);
                 StartGame();
             }
 
