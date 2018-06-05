@@ -1,0 +1,52 @@
+#mainHeader {
+    margin-top: 20px;
+    text-align: center;
+    background-color: rgb(25%, 0%, 25%);
+    color: aliceblue;
+    padding: 10px;
+}
+
+body{
+    background-image: url("../images/bodyBackground01.png")
+}
+
+.triviaStartup {
+    border: 10px solid black;
+    margin: 10px 350px 0px 350px;
+    border-radius: 10px;
+    background-color: aliceblue;
+}
+
+.container {
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+}
+
+.container img {
+    margin: 20px 0px 20px 0px;
+    width: 100%;
+    height: auto;
+}
+
+.buttonStart{
+    background:url("assets/images/questionmark.png") no-repeat;
+    cursor:pointer;
+    border:none;
+    width:100px;
+    height:100px;
+}
+
+.buttonStart:active  /* use Dot here */
+{   
+    background:url("assets/images/questionmark.png") no-repeat;
+}
+
+#categories {
+    border-radius: 10px;
+    margin: 10px 40px 0px 40px;
+    padding: 5px 0px 10px 0px;
+    text-align: center;
+    background-color: rgb(25%, 75%, 80%);
+}
+
