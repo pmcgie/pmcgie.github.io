@@ -30,7 +30,7 @@ body{
 }
 
 .buttonStart{
-    background:url("assets/images/questionmark.png") no-repeat;
+    background:url("../images/questionmark.png") no-repeat;
     cursor:pointer;
     border:none;
     width:100px;

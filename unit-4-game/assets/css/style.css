@@ -9,6 +9,10 @@
     background-size: cover;
 }
 
+footer{
+    background-color: black;
+    color: black;
+}
 
 #titleImage {
     height: 60%;
