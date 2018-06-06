@@ -14,6 +14,10 @@ footer{
     color: black;
 }
 
+body{
+    background-color: black;
+}
+
 #titleImage {
     height: 60%;
     width: 75%;
