@@ -10,23 +10,30 @@ body{
     background-image: url("../images/bodyBackground01.png")
 }
 
-.triviaStartup {
+#triviaStartup {
     border: 10px solid black;
-    margin: 10px 350px 0px 350px;
+    margin: 10px auto 10px auto;
     border-radius: 10px;
-    background-color: aliceblue;
+    background-color: white;
+    font-size: 20px;
 }
 
 .container {
     position: relative;
     width: 100%;
-    max-width: 400px;
+    max-width: 500px;
 }
 
 .container img {
     margin: 20px 0px 20px 0px;
     width: 100%;
     height: auto;
+}
+
+#questionmark {
+    font-size:200px;
+    color:black;
+    text-align:center;
 }
 
 .buttonStart{
@@ -44,8 +51,8 @@ body{
 
 #categories {
     border-radius: 10px;
-    margin: 10px 40px 0px 40px;
-    padding: 5px 0px 10px 0px;
+    margin: 10px 20px 0px 20px;
+    padding: 5px 10px 5px 10px;
     text-align: center;
     background-color: rgb(25%, 75%, 80%);
 }
