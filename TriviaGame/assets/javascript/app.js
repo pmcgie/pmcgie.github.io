@@ -1,8 +1,11 @@
-//Create Variables
+//Create Global Variables
 var questions
 var count = 5;
 var startit;
 var counter;
+
+//Create Question Objects
+
 
 //Click on Question Mark for introduction of Game
 $('#questionmark').click(function(){
@@ -13,7 +16,7 @@ $('#questionmark').click(function(){
 
         startit = setTimeout(getReady,1000);
         clearTimeout(startit);
-        counter = setInterval(function(){updateTimer()},1500)
+        counter = setInterval(function(){InitialTimer()},1500)
         
 });
 
@@ -23,7 +26,7 @@ function getReady() {
 }
 
 //Countdown
-function updateTimer(){
+function InitialTimer(){
     if(count > 0){
         $("#questionmark").fadeOut('slow', function(){
         	$("#questionmark").text(count);
@@ -37,7 +40,6 @@ function updateTimer(){
             $("#questionmark").fadeIn();
             clearInterval(counter);
             setTimeout(playTime,1000);
-            clearTimeout(setTimeout);
         });
     }
 }
