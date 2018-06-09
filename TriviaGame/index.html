@@ -47,16 +47,24 @@
     <div class = "container" 
         <div class="row" id="triviaStartup" style="font-family: Song Myung">
 
-            <!--Have a checklist of categories for trivia-->
-            <div id="categories">
+            <!--Let's you know how to start game-->
+            <div id="instruction">
                 <h5>Click on Question Mark to Start the Most Trivial Trivia Game Ever Played!</h5>
             </div>
 
             <!--Question Mark Triggers-->
-            <div class="container" id="questionmark"><img class="buttonStart" src="assets/images/questionmark.png" alt="question mark"></div>
-            
+            <div class="container">
+                <div class="questionmark">
+                    <img class="buttonStart" src="assets/images/questionmark.png" alt="question mark">
+                </div>
+            </div>
+
+            <div id="question"></div>
         </div>
     </div>
+
+    <div class = "container" id="questionSelection"></div>
+    <div class="container" id="timer"></div>
 
 
     

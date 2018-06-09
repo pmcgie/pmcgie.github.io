@@ -30,7 +30,7 @@ body{
     height: auto;
 }
 
-#questionmark {
+.questionmark {
     font-size:200px;
     color:black;
     text-align:center;
@@ -49,7 +49,7 @@ body{
     background:url("assets/images/questionmark.png") no-repeat;
 }
 
-#categories {
+#instruction {
     border-radius: 10px;
     margin: 10px 20px 0px 20px;
     padding: 5px 10px 5px 10px;
