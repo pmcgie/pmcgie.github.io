@@ -9,59 +9,59 @@ var questionUsed;
 var questionBank = [ 
     {
         Question: 'How many different sports has the dog "Air Bud" played in (in the movies)?',
-        QuestionResponses = ["3","4","5","6"],
+        QuestionResponses: ["3","4","5","6"],
         Correct: 2
         }
     ,
     {
         Question: 'What country are the islands of Islay, Mull, and St. Kilda located?',
-        QuestionResponses = ["Ireland","Scotland","Iceland","Fiji"],
+        QuestionResponses: ["Ireland","Scotland","Iceland","Fiji"],
         Correct: 2
     },
     {
         Question: 'What is the capital of Nebraska?',
-        QuestionResponses = ["Lincoln","Des Moine","Bernard","Lars"],
+        QuestionResponses: ["Lincoln","Des Moine","Bernard","Lars"],
         Correct: 0
     },
     {
         Question: 'How many NBA Championships did Michael Jordan win?',
-        QuestionResponses = ["4","5","6","7"],
+        QuestionResponses: ["4","5","6","7"],
         Correct: 2
     },
 
     {
         Question: 'What programming language does Excel use?',
-        QuestionResponses = ["VBA","Python","Java","Bombay"],
+        QQuestionResponses: ["VBA","Python","Java","Bombay"],
         Correct: 0
     },
 
     {
         Question: 'In the 1979 NFL Draft, Joe Montana was selected with what number pick in the draft?',
-        QuestionResponses = ["5","22","40","82"],
+        QuestionResponses: ["5","22","40","82"],
         Correct: 3
     },
 
     {
         Question: 'Which song was not released in the 80s?',
-        QuestionResponses = ["B-52's: Love Shack","Tom Petty: Into the Great Wide Open","Michael Jackson: Billy Jean","Prince: When Doves Cry"],
+        QuestionResponses: ["B-52's: Love Shack","Tom Petty: Into the Great Wide Open","Michael Jackson: Billy Jean","Prince: When Doves Cry"],
         Correct: 1
     },
 
     {
         Question: 'Which one is not a cryptocurrency?',
-        QuestionResponses = ["Bitcoin","Mintcoin","Swiftcoin","Potcoin"],
+        QuestionResponses: ["Bitcoin","Mintcoin","Swiftcoin","Potcoin"],
         Correct: 1
     },
 
     {
         Question: 'Which character is not a marvel comic books character?',
-        QuestionResponses = ["Frog-Man","Owl","Aqua Man","Iron Man"],
+        QuestionResponses: ["Frog-Man","Owl","Aqua Man","Iron Man"],
         Correct: 2
     },
 
     {
         Question: 'When year was the Apple iPhone Introduced?',
-        QuestionResponses = ["2005","2010","2001","2007"],
+        QuestionResponses: ["2005","2010","2001","2007"],
         Correct: 3
     }
 
@@ -96,12 +96,12 @@ var timer = {
 //Starting the Game''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 $('.questionmark').click(function(){
     
-    //$("#myAudio")[0].play();
+    $("#myAudio")[0].play();
     $("#instruction").empty();
     $("#instruction").removeAttr('id');
 
     setTimeout(getReady,1000*2);
-    setTimeout(playTime,1000*13);
+    setTimeout(playTime,1000*12);
     setTimeout(startQuestions,1000*14);
     var counter = setTimeout(startInterval,1000);
 });
@@ -151,3 +151,5 @@ function startQuestions(){
     }
 }
 //Question Timer and generate random question from question banks''''''''''''''''''''''''
+
+//Need to give conditions of % of success

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>NYT Search</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <!-- <link rel="stylesheet" type="text/css" media="screen" href="main.css" /> -->
+    <style>
+        .form-group {
+        width: 50%;
+    }
+
+    .box1 {
+        margin-left: 50px;
+    }
+
+    .box2 {
+        margin-left: 50px;
+    }
+    </style>
+</head>
+<body>
+
+	<div class="jumbotron jumbotron-fluid">
+		<div class="container">
+    	<h1 class="display-4">
+      	NYT Article Search
+      </h1>
+      
+      <p class="lead">
+      	API article search that will return results based on keywords.
+      
+      </p>
+    </div>
+              
+  </div>
+              
+  <div class="box1">
+  	<form>
+    	<div class="form-group">
+      	<label for="formGroupExampleInput">
+        	Search Term:
+        </label>
+        
+      <input type="text" class="form-control" id="search1" placeholder="" width: 50%;>
+    </div>
+    
+    <div class="form-group">
+    	<label for="formGroupExampleInput2">
+      	Number of Records to Retrieve:
+      </label>
+      
+    	<input type="text" class="form-control" id="search2" placeholder="">
+    </div>
+    
+    <div class="form-group">
+            <label for="formGroupExampleInput2">Start Year (Optional):</label>
+                        <input type="text" class="form-control" id="search3" placeholder="">
+                    </div>
+                    <div class="form-group">
+                        <label for="formGroupExampleInput2">End Year (Optional):</label>
+                        <input type="text" class="form-control" id="search4" placeholder="">
+                    </div>
+                  </form>
+                <button type="button" class="btn btn-primary btn-sm" id="search">Search</button>
+                <button type="button" class="btn btn-primary btn-sm" id="clear">Clear Results</button>
+                </div> 
+                
+                <br><br>
+
+                <form>
+                    <div class="form-group box2">
+                        <label for="exampleFormControlTextarea1">Article Results</label>
+                        <div id="results" ></div>
+                    </div>
+                </form>
+
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    
+            
+                <script type="text/javascript">
+
+               
+                    
+            
+                  
+                    
+                    $("#search").on("click", function() {
+                    var searchParam = $("#search1").val().trim()
+                    var beginDate = $("#search3").val().trim()
+                    var endDate = $("#search4").val().trim()
+                    
+            
+                     var queryURL = "https://api.nytimes.com/svc/search/v2/articlesearch.json";
+                      queryURL += '?' + $.param({
+                    'api-key': "27221a6d54e94979826fb6e63cbd2df8",
+                    'q': $("#search1").val().trim(),
+                    'begin_date':  beginDate,
+                    'end_date': endDate,
+                    'length': 5
+                    })
+            
+            
+                      $.ajax({
+                        url: queryURL,
+                        method: "GET"
+                      }).then(function(response) {
+                
+                        console.log(response)
+                        for (i = 0; i < response.response.docs.length; i ++){
+                
+                       // Step 1: Run this file, click a button, and see what the response object looks like in the browser's console.
+                        // Open up the data key, then open up the 0th, element. Study the keys and how the JSON is structured.
+                        
+                          //headline 
+                        $("#results").prepend("<p>"+ response.response.docs[i].headline.main + "</p>")
+                          //publisher
+                        $("#results").prepend(response.response.docs[i].source)
+                          
+                          //date-time
+                        $("#results").prepend(response.response.docs[i].pub_date)
+     
+                        $("#results").prepend(response.response.docs[i].web_url)
+
+                
+                        }
+                        
+                     
+                        
+                      });
+                    })
+               
+                
+                  </script>
+</body>
+</html>

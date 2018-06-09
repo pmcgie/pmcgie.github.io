@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Quoth the Giphy</title>
+</head>
+
+<body>
+  <!--Create buttons to click on with 'data' tags/identifiers-->
+  <div id="buttons">
+    <button data-person="arnold schwarzenegger">
+      I'll be back
+    </button>
+    <button data-person="michael j fox">
+      My happiness grows in direct proportion to my acceptance,
+      and in inverse proportion to my expectations.
+    </button>
+    <button data-person="michael meyers">
+        Anything you have to acquire a taste for was not meant to be eaten.
+    </button>
+    <button data-person="ozzy ozbourne">
+      Being sober on a bus is, like, totally different than being drunk on a bus.
+    </button>
+    <button data-person="ellen degeneres">
+      Accept who you are. Unless you're a serial killer.
+    </button>
+
+  </div>
+
+  <!--content goes here-->
+  <div id="gifs-appear-here">
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript">
+
+    //trigger event to generate gifs
+    $("button").on("click", function() {
+      var person = $(this).attr("data-person"); //this looks at current object (You've clicked on button, so current button is this)
+      var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
+        person + "&api_key=dc6zaTOxFJmzC&limit=10"; //assigns limit of search reponses
+
+      $.ajax({
+        url: queryURL,
+        method: "GET"
+      })
+        .then(function(response) {
+          var results = response.data;
+
+          for (var i = 0; i < results.length; i++) {
+            var gifDiv = $("<div class='item'>");
+
+            var rating = results[i].rating;
+
+            var p = $("<p>").text("Rating: " + rating);
+
+            var personImage = $("<img>");
+            personImage.attr("src", results[i].images.fixed_height.url);
+
+            gifDiv.prepend(p);
+            gifDiv.prepend(personImage);
+
+            $("#gifs-appear-here").prepend(gifDiv);
+          }
+        });
+    });
+  </script>
+</body>
+
+</html>
