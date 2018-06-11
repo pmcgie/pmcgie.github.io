@@ -1,9 +1,17 @@
 //Create Global Variables
 var questions
-var count = 6;
+var count = 6; 
 var startit;
 var counter;
-var questionUsed;
+var intervalId;
+var nextQuestion = '<div style="text-align:center; padding:20px;">'+
+  '<button id="nextQuestion" type="button" class="btn btn-primary">Click Here for Another Question</button>'+
+  '</div>';
+var timeDisplay;
+var questionNum;
+var questionHeader;
+var questionChoices;
+var rightAnswer;
 
 //Create Question Objects'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 var questionBank = [ 
@@ -60,35 +68,72 @@ var questionBank = [
     },
 
     {
-        Question: 'When year was the Apple iPhone Introduced?',
+        Question: 'What year was the first Apple iPhone Introduced?',
         QuestionResponses: ["2005","2010","2001","2007"],
         Correct: 3
     }
 
 ]
-
 //End Question Objects''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+
+//  This code will run as soon as the page loads.
+window.onload = function() {
+
+    //  Click events are done for us:
+    $("#nextQuestion").click(timer.start);
+  
+  };
 
 //Create Timer Object'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 var timer = {
 
-    startTime: 30,
+    time:0,
 
-    //Kicks off timer
+    //Kicks off timer and grabs question for interval
     start: function() {
-        intervalId = setInterval(timer.count,1000);
-        clockRunning = true;
-    },
 
-    //Times up Next Question
-    stop: function() {
-        clearInterval(intervalId);
-        $("#timer").text("Times up");
+        //Grab important question information
+        timer.time = 5;
+        questionNum =  Math.floor(Math.random() * questionBank.length);
+        questionHeader = questionBank[questionNum].Question;
+        questionChoices = questionBank[questionNum].QuestionResponses;
+        rightAnswer = questionBank[questionNum].Correct;
+
+
+        $("#question").html(questionHeader);
+
+        //Format question
+        $("#questionChoices").css("background-color", "white");
+        $("#questionChoices").css("border", "10px solid black");
+        $("#questionChoices").css("border-radius", "10px");
+        $("#nextQuestion").empty();
+        $("#questionChoices").empty();
+
+        //Create Choices
+        for (i=0; i<4; i++) {
+            $("#questionChoices").append("<form><input type='radio'>" + questionChoices[i] + "<br></form>")
+        }
+
+        intervalId = setInterval(timer.count,1000);
     },
 
     //Decrease time by 1
     count: function() {
-        $("#timer").html(timer.time--)
+        timeDisplay = timer.time--;
+        console.log(timeDisplay);
+        $("#timer").html(timeDisplay)
+
+        if (timeDisplay<=0) {
+            clearInterval(intervalId);
+            $("#questionChoices").empty();
+            $("#question").empty();
+            $("#timer").html(" ");
+            $("#question").css("border", "0px solid black");
+            $("#triviaStartup").css("border", "0px solid black");
+            $("#questionChoices").css("border", "0px solid black");
+            $("#nextQuestion").html(nextQuestion);
+        }
     },
 }
 //End Timer Objects and Methods''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
@@ -96,14 +141,14 @@ var timer = {
 //Starting the Game''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 $('.questionmark').click(function(){
     
-    $("#myAudio")[0].play();
+    //$("#myAudio")[0].play();
     $("#instruction").empty();
     $("#instruction").removeAttr('id');
 
     setTimeout(getReady,1000*2);
     setTimeout(playTime,1000*12);
     setTimeout(startQuestions,1000*14);
-    var counter = setTimeout(startInterval,1000);
+    setTimeout(startInterval,1000);
 });
 
 
@@ -111,7 +156,7 @@ $('.questionmark').click(function(){
 
     //Function for interval
     function startInterval() {
-        setInterval(function(){InitialTimer()},1500)
+        intervalId = setInterval(function(){InitialTimer()},1500)
     }
 
     //Countdown to game start
@@ -124,7 +169,7 @@ $('.questionmark').click(function(){
             });
         }
         if(count === 0){
-            clearInterval(counter);
+            clearInterval(intervalId);
         } 
     }
 
@@ -139,16 +184,12 @@ $('.questionmark').click(function(){
 //Question Time'''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 function startQuestions(){
 
-    //Remove ridiculous question mark so user can never play ridiculous by clicking it now
+    //Remove ridiculous question mark and other things
     $('.questionmark').empty();
     $('.questionmark').removeClass('.questionmark');
     $("#myAudio")[0].pause();
-    questionUsed = [];
     
-    //loop through questions
-    for (i=0;i<10;i++) {
-        var tid = setInterval(mycode, 1000);
-    }
+    timer.start();
 }
 //Question Timer and generate random question from question banks''''''''''''''''''''''''
 
