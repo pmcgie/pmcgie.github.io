@@ -13,6 +13,7 @@ var optionSelected;
 var pullGifNum;
 var pullGif;
 var gifMessage;
+var usedQuestions;
 var nextQuestion = '<div style="text-align:center; padding:20px;">'+
   '<button id="nextQuestion" type="button" class="btn btn-primary">Click Here for Another Question</button>'+
   '</div>';
@@ -41,7 +42,7 @@ var questionBank = [
     {Question: 'Who won the 1980 SuperBowl?',QuestionResponses: ["Green Bay Packers","Dallas Cowboys","New England Patriots","Pittsburgh Steelers"],Correct: 3},
     {Question: 'Which of these companies invented Ethernet?',QuestionResponses: ["Apple","Xerox","Cisco","AT&T"],Correct: 1},
     {Question: 'What is the largest freshwater lake in the world (in terms of volume)?',QuestionResponses: ["Lake Victoria","Lake Superior","Lake Baikal","Caspian Sea"],Correct: 2},
-    {Question: 'In the game Monopoly, how much do you collect for finishing second in the beauty contest?',QuestionResponses: ["$10","$40","$100","$150"],Correct: 0}
+    {Question: 'In the game Monopoly, how much do you collect for finishing second in the beauty contest?',QuestionResponses: ["$10","$40","$100","$150"],Correct: 0},s
 ]
 //End Question Objects''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
@@ -73,6 +74,7 @@ function responsiveButton(i) {
 }
 
 function responseSubmit() {
+
     //Right Answer
     if (rightAnswer==optionSelected) {
         pullGifNum =  Math.floor(Math.random() * gifs.Winner.length);
@@ -87,6 +89,7 @@ function responseSubmit() {
     }
 
     $("#gifImage").append(gifMessage);
+
 }
 
 //Create Timer Object'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
@@ -99,7 +102,23 @@ var timer = {
 
         //Grab important question information
         timer.time = 30;
+        optionSelected = -1;
         questionNum =  Math.floor(Math.random() * questionBank.length);
+
+        //Reduce repeat questions - recalculate num
+        if (usedQuestions.includes(questionNum)) {
+            while (usedQuestions.includes(questionNum) && usedQuestions.length<=10) {
+                questionNum =  Math.floor(Math.random() * questionBank.length);
+            }
+        }   
+        
+        //Clear out array once length is 10
+        if (usedQuestions.length === 10) {
+            usedQuestions = [];
+        }
+
+        usedQuestions.push(questionNum); //modify array
+
         questionHeader = questionBank[questionNum].Question;
         questionChoices = questionBank[questionNum].QuestionResponses;
         rightAnswer = questionBank[questionNum].Correct;
@@ -206,6 +225,7 @@ $('.questionmark').click(function(){
 function startQuestions(){
 
     //Remove ridiculous question mark and other things
+    usedQuestions = [];
     $('.questionmark').empty();
     $('.questionmark').removeClass('.questionmark'); //for future use and reference use .hide
     $("#myAudio")[0].pause();
