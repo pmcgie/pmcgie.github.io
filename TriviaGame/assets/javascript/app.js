@@ -42,7 +42,10 @@ var questionBank = [
     {Question: 'Who won the 1980 SuperBowl?',QuestionResponses: ["Green Bay Packers","Dallas Cowboys","New England Patriots","Pittsburgh Steelers"],Correct: 3},
     {Question: 'Which of these companies invented Ethernet?',QuestionResponses: ["Apple","Xerox","Cisco","AT&T"],Correct: 1},
     {Question: 'What is the largest freshwater lake in the world (in terms of volume)?',QuestionResponses: ["Lake Victoria","Lake Superior","Lake Baikal","Caspian Sea"],Correct: 2},
-    {Question: 'In the game Monopoly, how much do you collect for finishing second in the beauty contest?',QuestionResponses: ["$10","$40","$100","$150"],Correct: 0},s
+    {Question: 'In the game Monopoly, how much do you collect for finishing second in the beauty contest?',QuestionResponses: ["$10","$40","$100","$150"],Correct: 0},
+    {Question: 'What does the term "piano" mean?',QuestionResponses: ["To be played softly","friendly music","to inspire","to be played in front of a large audience"],Correct: 0},
+    {Question: 'As of the year 2017, which state has the most bars per capita?',QuestionResponses: ["Alabama","New York","North Dakota","Wisconsin"],Correct: 3},
+    {Question: 'What state do you get sales tax on "cut" bagels versus no sales tax on "uncut" bagels?',QuestionResponses: ["New York","Texas","Mississippi","Montana"],Correct: 0},
 ]
 //End Question Objects''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
