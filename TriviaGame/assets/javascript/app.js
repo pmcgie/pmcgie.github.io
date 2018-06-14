@@ -46,6 +46,7 @@ var questionBank = [
     {Question: 'What does the term "piano" mean?',QuestionResponses: ["To be played softly","friendly music","to inspire","to be played in front of a large audience"],Correct: 0},
     {Question: 'As of the year 2017, which state has the most bars per capita?',QuestionResponses: ["Alabama","New York","North Dakota","Wisconsin"],Correct: 3},
     {Question: 'What state do you get sales tax on "cut" bagels versus no sales tax on "uncut" bagels?',QuestionResponses: ["New York","Texas","Mississippi","Montana"],Correct: 0},
+    {Question: 'Which comedic film was not released in 2005?',QuestionResponses: ["Hitch","Wedding Crashers","50 First Dates","The 40-year-old Virgin"],Correct: 2},
 ]
 //End Question Objects''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
