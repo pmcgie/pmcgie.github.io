@@ -2,7 +2,7 @@
 <html>
 <head>
 
-    <title>Trivia Game</title>
+    <title>GIF Fun!</title>
 
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -14,24 +14,62 @@
 
     <!--Links to Google Fonts and Font Awesome-->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/css?family=Abril+Fatface|Amatic+SC|BioRhyme+Expanded|Eater|Orbitron|Permanent+Marker|Song+Myung" rel="stylesheet">
-
-    <!--Undecided Google Fonts
-    font-family: 'Song Myung', serif; font-family: 'BioRhyme Expanded', serif;
-    font-family: 'Abril Fatface', cursive; font-family: 'Amatic SC', cursive;
-    font-family: 'Eater', cursive; font-family: 'Orbitron', sans-serif; font-family: 'Permanent Marker', cursive;
-    -->
-
-    <!--Add FavIcon 32px by 32px-->
-    <link rel="shortcut icon" type="image/png" href="assets/images/favicon.png"/>
 
     <!--Tie to other user files-->
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
     <link type="text/javascript" src="assets/javascript.app.js">
     
-    
 </head>
+
 <body>
+
+    <br>
+    <div id="buttons-view"></div>
+    <br>
+    
+    <!--Add GIF Topic-->
+    <div class="row">
+        <!--GIF Output-->
+        <div class="col-lg-5" id="GIF_col_Ouput">
+            <div class="panel panel-default">
+                <div class="panel-heading"><h3 class="panel-title">GIFS Below!</h3></div>
+                <div class="gif-reveal"></div>
+            </div>
+        </div>
+
+        <!--Add Gif Topic-->
+        <div class="col-lg-5">
+                <div class="col-lg-12">
+                    <h4>Add GIF Topic</h4>
+                    <form id="topic-form">
+                        <label for="topic-input"></label>
+                        <input type="text" id="movie-input">
+                    
+                        <!-- Button triggers new movie to be added -->
+                        <input id="add-topic" type="submit" value="Click Here to Add Topic">
+                    </form>
+                </div>
+
+                <br>
+
+                <div class="col-lg-12">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading"><h3 class="panel-title" id="Favorites">Favorites</h3></div>
+                        <div class="gif-favorites"></div>
+                    </div>
+                </div>
+
+        </div>
+    </div>
+
+    <!--Pull javascript CDN -->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+
+    <!--Run Script-->
+    <script type="text/javascript" src="assets/javascript/app.js"></script> 
 
 </body>
 </html>

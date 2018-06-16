@@ -1,0 +1,17 @@
+button {
+    margin: 10px;
+}
+
+#GIF_col_Ouput {
+    margin-left: 10px;
+}
+
+#Favorites {
+    color: whitesmoke;
+    text-align: center;
+}
+
+img.animatedGif{
+    width: 50%;
+    height: 50%;
+}
