@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+
+<head>
+
+  <meta charset="UTF-8">
+  <title>Moment JS Exercises</title>
+
+</head>
+
+<body>
+
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery.js"></script>
+
+  <!-- Link to Moment.js should go here -->
+  <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+
+
+  <script>
+    var randomDate = "02/23/1999";
+
+    // Using scripts from moment.js write code below to complete each of the following.
+    // Console.log to confirm the code changes we made worked.
+
+    // 1 ...to convert the randomDate into three other date formats
+    console.log(moment(randomDate).format('MMMM Do YYYY, h:mm:ss a'));
+    console.log(moment(randomDate).format('dddd'));
+    console.log(moment(randomDate).format("MMM Do YY"));
+
+    // 2 ...to determine the time in years, months, days between today and the randomDate
+      //Create moment a and moment b
+      var a = moment(['1999','2','23'])
+      var b = moment(['2018','6','16'])
+
+      //years
+      console.log(moment(randomDate).diff(moment(),"years")) //Shows inverse
+      var years = b.diff(a,'years')
+      console.log(years)
+
+      //months
+      var months = b.diff(a,'months')
+      console.log(months)
+
+      //Days
+      var days = b.diff(a,'days')
+      console.log(days)
+
+    // 3 ...to determine the number of days between the randomDate and 02/14/2001
+      var c = moment(['2001','2','14'])
+      var days = c.diff(a,'days')
+      console.log(days)
+
+    // 4 ...to convert the randomDate to unix time (be sure to look up what unix time even is!!!)
+    var unixDate = moment(randomDate).unix();
+    console.log(unixDate)
+
+    // 5 ...to determine what day of the week and what week of the year this randomDate falls on.
+    var weekYear = moment(randomDate).week();
+    console.log(weekYear)
+
+    var dayWeek = moment(randomDate).day();
+    console.log(dayWeek);
+
+    // If you finish early...
+    // Start creating HTML inputs and then redisplay the dates using moment.js elsewhere on the page.
+  </script>
+
+</body>
+
+</html>

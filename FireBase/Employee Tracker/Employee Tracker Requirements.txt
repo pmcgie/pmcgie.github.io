@@ -1,0 +1,11 @@
+Header
+
+List of Current Employees
+	- EE_Name
+	- Role
+	- Start Date
+	- Months Worked (Local) - Calculated
+	- Monthly Rate
+	- Total Billed (Local) - Calculated
+
+Add Employee section (Use Push) - Form 

@@ -132,7 +132,7 @@
     });
 
 
-    // Firebase watcher + initial loader HINT: .on("value")
+    // Firebase watcher + initial loader HINT: .on("value") - real time listener
     database.ref().on("value", function(snapshot) {
       console.log(snapshot.val());
 
