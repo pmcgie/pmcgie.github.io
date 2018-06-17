@@ -25,6 +25,7 @@ var allTopics = ["The Matrix", "basketball", "dancing","home"];
     
     //trigger event to generate gifs
     function displayTopicInformation() {
+
         $(".gif-reveal").empty();
         var topic = $(this).attr("data-name"); //this looks at current object (You've clicked on button, so current button is this)
 
@@ -37,20 +38,38 @@ var allTopics = ["The Matrix", "basketball", "dancing","home"];
           .then(function(response) {
             var results = response.data;
   
+            //Loop through results
             for (var i = 0; i < results.length; i++) {
-              var gifDiv = $("<div>");
-  
-              var rating = results[i].rating;
-  
-              var p = $("<p style='margin-left:10px;'>").text("Rating: " + rating);
-  
-              var topicImage = $("<img  class='animatedGif'>");
-              topicImage.attr("src", results[i].images.fixed_height.url);
-  
-              gifDiv.prepend(p);
-              gifDiv.prepend(topicImage);
-  
-              $(".gif-reveal").prepend(gifDiv);
+
+                //Create new div for GIF
+                var gifDiv = $("<div>");
+    
+                //Get Rating
+                var rating = results[i].rating;
+                var p = $("<p style='margin-left:10px;'>").text("Rating: " + rating);
+    
+                //Two different ways of querying API: animated vs not animated
+                var resultsURL_still = results[i].images.fixed_height_still.url;
+                var resultsURL_not_still = results[i].images.fixed_height.url;
+                
+                var topicImage = $("<img  class='animatedGif' data-animate='" + resultsURL_not_still +"'data-still='" + resultsURL_still+"' data-state='still'>");
+                topicImage.attr("src", resultsURL_still);
+
+                //Favorites Option
+                var addtoFavorites = $("<button>");
+                addtoFavorites.addClass("fav-btn");
+                addtoFavorites.attr("data-state", "still");
+                addtoFavorites.attr("src",resultsURL_still)
+                addtoFavorites.text("Click Here to Add to Favorites")
+                
+                //Prepend Items
+                gifDiv.prepend(p);
+                gifDiv.prepend(topicImage);
+                
+                //Change DOM
+                $(".gif-reveal").prepend(gifDiv);
+                $(".gif-reveal").prepend(addtoFavorites);
+
             }
 
         });
@@ -71,6 +90,49 @@ var allTopics = ["The Matrix", "basketball", "dancing","home"];
         renderButtons();
     });
 
+//Animation Start/Stop
+$(document).on('click', ".animatedGif", function() {
+    
+    // The attr jQuery method allows us to get or set the value of any attribute on our HTML element
+    var state = $(this).attr("data-state");
+
+    // If the clicked image's state is still, update its src attribute to what its data-animate value is.
+    // Then, set the image's data-state to animate
+    // Else set src to the data-still value
+    if (state === "still") {
+      $(this).attr("src", $(this).attr("data-animate"));
+      $(this).attr("data-state", "animate");
+    } else {
+      $(this).attr("src", $(this).attr("data-still"));
+      $(this).attr("data-state", "still");
+    }
+
+});
+
+//Add to Favorites
+$(document).on("click", ".fav-btn", function() {
+
+    
+    //Create new div for GIF favorites
+    var gifDiv = $("<div>");
+    var gifName = $(this).attr("src")
+
+    //Create Favorite Image
+    var topicImage = $("<img  class='animatedGif'>");
+    topicImage.attr("src", gifName);
+    topicImage.attr("style", "margin:10px;");
+
+    topicImage.attr("data-state", "still");
+
+    //Prepend Items
+    gifDiv.prepend(topicImage);
+    
+    //Change DOM
+    $(".gif-favorites").prepend(gifDiv);
+
+});
+
+//ensures button functionality
 $(document).on("click", ".topic-btn", displayTopicInformation);
 
 // Calling the renderButtons function to display the intial buttons
