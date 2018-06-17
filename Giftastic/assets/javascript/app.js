@@ -1,5 +1,9 @@
 //Setting up variables
 var allTopics = ["The Matrix", "basketball", "dancing","home"];
+var favorites_still_List = [];
+var farorites_not_still_List = [];
+var favoritesRatings = [];
+localStorage.clear();
 
     // Function for displaying topic data
     function renderButtons() {
@@ -21,6 +25,56 @@ var allTopics = ["The Matrix", "basketball", "dancing","home"];
             // Adding the button to the buttons-view div
             $("#buttons-view").append(tag);
         }
+    }
+
+    //Populate Favorites List that currently exists on local storage
+    function renderLocalStorage() {
+        if (localStorage.getItem("favoriteItemsStill") === null) {
+        } else {
+
+            //Set up initial arrays for loop and to retrieve gifs
+            var nonanimatedArray = [];
+            var animatedArray = [];
+
+            //get items for still and not still gifs
+            curFavStillList = localStorage.getItem("favoriteItemsStill");
+            curFavNotStillList = localStorage.getItem("favoriteItemsNotStill")
+            
+            //Parse local storage and feed into arrays
+            nonanimatedArray = JSON.parse(curFavStillList);
+            animatedArray = JSON.parse(curFavNotStillList);
+
+            //Loop through array
+            for (i=0;i<nonanimatedArray.length;i++) {
+
+                //define variables for animated and not animated url's
+                var nonAminated = nonanimatedArray[i];
+                var Animated = animatedArray[i];
+
+                //re-populate favorites array
+                favorites_still_List.push(nonAminated);
+
+                //Create new div for GIF favorites
+                var gifDiv = $("<div>");
+
+                var topicImage = $("<img  class='animatedGif'>");
+                topicImage.attr("src", nonAminated);
+                topicImage.attr("style", "margin:10px;");
+
+                 //Create "Delete" Button
+                var delButton = $("<button>");
+                delButton.addClass("del-btn");
+                delButton.text("Click Here to Remove from Favorites");
+
+                //Prepend Items
+                gifDiv.prepend(topicImage);
+                gifDiv.prepend(delButton);
+                
+                //Change DOM
+                $(".gif-favorites").prepend(gifDiv);
+
+            }
+        }  
     }
     
     //trigger event to generate gifs
@@ -59,8 +113,9 @@ var allTopics = ["The Matrix", "basketball", "dancing","home"];
                 var addtoFavorites = $("<button>");
                 addtoFavorites.addClass("fav-btn");
                 addtoFavorites.attr("data-state", "still");
-                addtoFavorites.attr("src",resultsURL_still)
-                addtoFavorites.text("Click Here to Add to Favorites")
+                addtoFavorites.attr("src",resultsURL_still);
+                addtoFavorites.attr("data-animate",resultsURL_not_still);
+                addtoFavorites.text("Click Here to Add to Favorites");
                 
                 //Prepend Items
                 gifDiv.prepend(p);
@@ -109,24 +164,38 @@ $(document).on('click', ".animatedGif", function() {
 
 });
 
-//Add to Favorites
+//Add to Favorites and store relevant information in local storage
 $(document).on("click", ".fav-btn", function() {
 
-    
     //Create new div for GIF favorites
     var gifDiv = $("<div>");
     var gifName = $(this).attr("src")
+    var gifAnimate = $(this).attr("data-animate")
 
     //Create Favorite Image
-    var topicImage = $("<img  class='animatedGif'>");
+    var topicImage = $("<img  class='animatedGif' data-animate='" + gifAnimate +"'data-still='" + gifName+"' data-state='still'>");
     topicImage.attr("src", gifName);
     topicImage.attr("style", "margin:10px;");
 
     topicImage.attr("data-state", "still");
 
+    //Create "Delete" Button
+    var delButton = $("<button>");
+    delButton.addClass("del-btn");
+    delButton.text("Click Here to Remove from Favorites");
+
     //Prepend Items
     gifDiv.prepend(topicImage);
-    
+    gifDiv.prepend(delButton);
+
+    //Add to array
+    favorites_still_List.push(gifName);
+    farorites_not_still_List.push(gifAnimate);
+
+    //Add array to local storage
+    localStorage.setItem("favoriteItemsStill",JSON.stringify(favorites_still_List));
+    localStorage.setItem("favoriteItemsNotStill",JSON.stringify(favorites_still_List));
+
     //Change DOM
     $(".gif-favorites").prepend(gifDiv);
 
@@ -137,3 +206,6 @@ $(document).on("click", ".topic-btn", displayTopicInformation);
 
 // Calling the renderButtons function to display the intial buttons
 renderButtons();
+
+//on window load pull up gif local storage
+renderLocalStorage();
