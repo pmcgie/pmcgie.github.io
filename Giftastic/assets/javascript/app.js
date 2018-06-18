@@ -1,9 +1,12 @@
+//TODO - remove favorites needs more work
+
 //Setting up variables
-var allTopics = ["The Matrix", "basketball", "dancing","home"];
+var allTopics = ["The Matrix", "Basketball", "Dance","X-Games","sci-fi"];
 var favorites_still_List = [];
-var farorites_not_still_List = [];
+var favorites_not_still_List = [];
 var favoritesRatings = [];
-localStorage.clear();
+var y;
+//localStorage.clear();
 
     // Function for displaying topic data
     function renderButtons() {
@@ -30,6 +33,7 @@ localStorage.clear();
     //Populate Favorites List that currently exists on local storage
     function renderLocalStorage() {
         if (localStorage.getItem("favoriteItemsStill") === null) {
+            y = -1
         } else {
 
             //Set up initial arrays for loop and to retrieve gifs
@@ -45,24 +49,27 @@ localStorage.clear();
             animatedArray = JSON.parse(curFavNotStillList);
 
             //Loop through array
-            for (i=0;i<nonanimatedArray.length;i++) {
+            for (y=0;y<nonanimatedArray.length;y++) {
 
                 //define variables for animated and not animated url's
-                var nonAminated = nonanimatedArray[i];
-                var Animated = animatedArray[i];
+                var nonAminated = nonanimatedArray[y];
+                var Animated = animatedArray[y];
 
                 //re-populate favorites array
                 favorites_still_List.push(nonAminated);
+                favorites_not_still_List.push(Animated);
 
                 //Create new div for GIF favorites
                 var gifDiv = $("<div>");
 
-                var topicImage = $("<img  class='animatedGif'>");
+                //set up local storage topicImages
+                var topicImage = $("<img  class='animatedGif' data-animate='" + Animated +"'data-still='" + nonAminated+"' data-state='still'>");
                 topicImage.attr("src", nonAminated);
                 topicImage.attr("style", "margin:10px;");
 
                  //Create "Delete" Button
                 var delButton = $("<button>");
+                delButton.attr("value",y);
                 delButton.addClass("del-btn");
                 delButton.text("Click Here to Remove from Favorites");
 
@@ -81,6 +88,7 @@ localStorage.clear();
     function displayTopicInformation() {
 
         $(".gif-reveal").empty();
+        
         var topic = $(this).attr("data-name"); //this looks at current object (You've clicked on button, so current button is this)
 
         var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + topic + "&api_key=DX02zQ16zROY7j7IgKA3WD33lOlEJYaj&limit=10"; //assigns limit of search responses
@@ -93,18 +101,18 @@ localStorage.clear();
             var results = response.data;
   
             //Loop through results
-            for (var i = 0; i < results.length; i++) {
+            for (var x = 0; x < results.length; x++) {
 
                 //Create new div for GIF
                 var gifDiv = $("<div>");
     
                 //Get Rating
-                var rating = results[i].rating;
+                var rating = results[x].rating;
                 var p = $("<p style='margin-left:10px;'>").text("Rating: " + rating);
     
                 //Two different ways of querying API: animated vs not animated
-                var resultsURL_still = results[i].images.fixed_height_still.url;
-                var resultsURL_not_still = results[i].images.fixed_height.url;
+                var resultsURL_still = results[x].images.fixed_height_still.url;
+                var resultsURL_not_still = results[x].images.fixed_height.url;
                 
                 var topicImage = $("<img  class='animatedGif' data-animate='" + resultsURL_not_still +"'data-still='" + resultsURL_still+"' data-state='still'>");
                 topicImage.attr("src", resultsURL_still);
@@ -139,7 +147,6 @@ localStorage.clear();
 
         // The movie from the textbox is then added to our array
         allTopics.push(newTopic);
-        console.log(allTopics)
 
         // Calling renderButtons which handles the processing of our movie array
         renderButtons();
@@ -164,6 +171,30 @@ $(document).on('click', ".animatedGif", function() {
 
 });
 
+//Ability to remove from Favs and Local Storage
+$(document).on("click",".del-btn", function() {
+    
+    //Clear Out before populating again
+    $(".gif-favorites").empty();
+
+    //reference value which is index value
+    var index = $(this).attr("value")
+    console.log(index)
+
+    //Remove items/splice
+    favorites_still_List.splice(index,1);
+    favorites_not_still_List.splice(index,1);
+
+    //Reset array in local storage
+    //Add array to local storage
+    localStorage.setItem("favoriteItemsStill",JSON.stringify(favorites_still_List));
+    localStorage.setItem("favoriteItemsNotStill",JSON.stringify(favorites_not_still_List));
+
+    //render favorites again with new information
+    location.reload();
+
+})
+
 //Add to Favorites and store relevant information in local storage
 $(document).on("click", ".fav-btn", function() {
 
@@ -181,8 +212,10 @@ $(document).on("click", ".fav-btn", function() {
 
     //Create "Delete" Button
     var delButton = $("<button>");
+    delButton.attr("value",y);
     delButton.addClass("del-btn");
     delButton.text("Click Here to Remove from Favorites");
+    y++;
 
     //Prepend Items
     gifDiv.prepend(topicImage);
@@ -190,11 +223,11 @@ $(document).on("click", ".fav-btn", function() {
 
     //Add to array
     favorites_still_List.push(gifName);
-    farorites_not_still_List.push(gifAnimate);
+    favorites_not_still_List.push(gifAnimate);
 
     //Add array to local storage
     localStorage.setItem("favoriteItemsStill",JSON.stringify(favorites_still_List));
-    localStorage.setItem("favoriteItemsNotStill",JSON.stringify(favorites_still_List));
+    localStorage.setItem("favoriteItemsNotStill",JSON.stringify(favorites_not_still_List));
 
     //Change DOM
     $(".gif-favorites").prepend(gifDiv);
