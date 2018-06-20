@@ -1,0 +1,33 @@
+Part II: Reviewing a Pull Request
+
+In this section we will review the pull request from Part I and merge it into master. A different project member should complete this section while others observe.
+
+Clone the repo to your computer if you haven't already done so and cd into it.
+
+First you will want to test the changes introduced by the add-html-skeleton branch locally.In order to examine the new branch on your local machine, run the following commands in your terminal:
+
+git fetch
+
+git checkout -b add-html-skeleton origin/add-html-skeleton
+
+This code should bring the copy of the add-html-skeleton branch that's on GitHub onto your computer.
+
+Make sure this worked by verifying that there's an index.html file in your local repo.
+
+Normally you'd run the code here to make sure everything works properly.
+
+Check back out to your local master branch by running the following in your terminal:
+
+git checkout master
+
+Now go to your GitHub repo's main page and go to the "Pull request" section. Select the add-html-skeleton pull request from the list.
+
+At the next page select the option to see the "Files changed".
+
+You should be presented with all of the files that were changed in this PR along with line numbers for any code added/removed.
+
+If there are any changes you would like made, you can click the line number to leave a comment the PR author will see and should address before approval. Otherwise click "Review changes" and approve the PR. You should be taken to a screen with an option to "Merge pull request" -- click this button.
+
+Once complete you can delete the feature branch from your machine by running the following in your terminal:
+
+git branch -D add-html-skeleton
