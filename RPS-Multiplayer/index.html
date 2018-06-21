@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>GIF Fun!</title>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Add links to Bootstrap CSS-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!--Links to Google Fonts and Font Awesome-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+
+    <!--Tie to other user files-->
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <link type="text/javascript" src="assets/javascript.app.js">
+    
+</head>
+
+<body>
+
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h1>Rock,Paper, Scissors!</h1>
+            <p class="lead">No need to have human interaction when you can play this game online instead!</p>
+        </div>
+    </div>
+    <br>
+
+    <div class="row">
+        <div class="col-lg-4    "></div>
+        <form  class="col-lg-6" id="new-user">
+            <input type="text" name="username" placeholder="Enter Name to Play" />
+            <a id="submitName" class="btn btn-primary">Submit</a>
+        </form>		
+    </div>
+
+    <br>
+
+    <div class="row">
+
+        <div class="col-sm-2"></div>
+        
+        <div class="card col-lg-2">
+            <div>Player Name</div>
+            <div>Options</div> 
+            <div>WinLoss</div>
+        </div>
+
+        <div class="col-sm-1"></div>
+
+        <div class="card col-lg-2">
+            <div>WinnerReveal</div>
+        </div>
+
+        <div class="col-sm-1"></div>
+
+        <div class="card col-lg-2">
+            <div>Player Name</div>
+            <div>Options</div>
+            <div>WinLoss</div>
+        </div>
+    </div>
+
+    <br>
+
+    <div class="container-fluid">
+		<div class="row">
+                
+            <div class="col-lg-3"></div>
+
+                <div class="col-lg-6">
+                    <h5>Message Board</h5>
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Username
+                                </th>
+                                <th>
+                                    Message
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td colspan="2">No messages</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+			<div class="row">
+                <div class="col-lg-3"></div>
+				<form  class="col-lg-6" id="new-user">
+					<input type="text" name="username" placeholder="Username" />
+					<input type="text" name="message" placeholder="Message" />
+					<a id="send" class="btn btn-primary">SEND</a>
+				</form>		
+            </div>
+            
+		</div>
+
+
+    <!--Pull javascript CDN -->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+
+    <!--Run Script-->
+    <script type="text/javascript" src="assets/javascript/app.js"></script> 
+
+</body>
+</html>
