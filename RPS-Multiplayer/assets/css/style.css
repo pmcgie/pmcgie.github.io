@@ -1,0 +1,19 @@
+#initButtons{
+    color: aliceblue;
+}
+
+#send{
+    color: aliceblue;
+}
+
+#P2_Name,#P1_Name{
+    color: aliceblue;
+    background-color: black;
+    text-align: center;
+    border: 10px solid rgb(12, 28, 70);
+}
+
+#P2_Rock,#P2_Paper,#P2_Scissors,#P1_Rock,#P1_Paper,#P1_Scissors {
+    width: 100%;
+    border: .5px solid black;
+}

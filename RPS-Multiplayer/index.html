@@ -18,12 +18,15 @@
     <!--Tie to other user files-->
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
     <link type="text/javascript" src="assets/javascript.app.js">
+
+    <!-- Firebase Reference -->
+    <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase.js"></script>
     
 </head>
 
 <body>
 
-    <div class="jumbotron jumbotron-fluid">
+    <div class="jumbotron jumbotron-fluid" style="padding-bottom: 30px; padding-top: 30px; margin-bottom: 10px;">
         <div class="container">
             <h1>Rock,Paper, Scissors!</h1>
             <p class="lead">No need to have human interaction when you can play this game online instead!</p>
@@ -32,10 +35,16 @@
     <br>
 
     <div class="row">
-        <div class="col-lg-4    "></div>
+        <div class="col-lg-4"></div>
         <form  class="col-lg-6" id="new-user">
-            <input type="text" name="username" placeholder="Enter Name to Play" />
-            <a id="submitName" class="btn btn-primary">Submit</a>
+            <input type="text" id="username" placeholder="Enter User Name"/>
+            <input style='margin: 10px;' type="text" id='password' placeholder="Enter Password">
+            
+            <div class="row" id="initButtons">
+                <a id="Signup" style='margin:5px 5px 5px 20px;' class="btn btn-primary">Create New User</a>
+                <a id="Login" style='margin:5px' class="btn btn-primary">Login</a>
+                <a id="Logout" style='margin:5px' class="btn btn-primary">Logout</a>
+            </div>
         </form>		
     </div>
 
@@ -45,24 +54,34 @@
 
         <div class="col-sm-2"></div>
         
-        <div class="card col-lg-2">
-            <div>Player Name</div>
-            <div>Options</div> 
-            <div>WinLoss</div>
+        <div id="P1" style="padding:0px;" class="card col-lg-2">
+            <div id="P1_Name">Waiting on Player</div>
+            <div id="P1_Options">
+                <div><a  id="P1_Rock" class="btn btn-light">Rock</a></div>
+                <div><a  id="P1_Paper" class="btn btn-light">Paper</a></div>
+                <div><a  id="P1_Scissors" class="btn btn-light">Scissors</a></div>
+            </div>
+            <div  id="P1_Decision"></div>
+            <div id="P1_Record"></div>
         </div>
 
         <div class="col-sm-1"></div>
 
         <div class="card col-lg-2">
-            <div>WinnerReveal</div>
+            <div id="WinnerReveal"></div>
         </div>
 
         <div class="col-sm-1"></div>
 
-        <div class="card col-lg-2">
-            <div>Player Name</div>
-            <div>Options</div>
-            <div>WinLoss</div>
+        <div id = "P2" style="padding:0px;" class="card col-lg-2">
+            <div id="P2_Name">Waiting on Player</div>
+            <div id="P2_Options">
+                <div><a id="P2_Rock" class="btn btn-light">Rock</a></div>
+                <div><a id="P2_Paper" class="btn btn-light">Paper</a></div>
+                <div><a  id="P2_Scissors" class="btn btn-light">Scissors</a></div>
+            </div>
+            <div  id="P1_Decision"></div>
+            <div id="P2_Record"></div>
         </div>
     </div>
 
@@ -97,9 +116,8 @@
 
 			<div class="row">
                 <div class="col-lg-3"></div>
-				<form  class="col-lg-6" id="new-user">
-					<input type="text" name="username" placeholder="Username" />
-					<input type="text" name="message" placeholder="Message" />
+				<form  class="col-lg-9" id="new-user">
+					<input class="col-lg-6" type="text" name="message" placeholder="Message" />
 					<a id="send" class="btn btn-primary">SEND</a>
 				</form>		
             </div>
@@ -115,6 +133,7 @@
 
     <!--Run Script-->
     <script type="text/javascript" src="assets/javascript/app.js"></script> 
+    <script src="https://www.gstatic.com/firebasejs/5.1.0/firebase.js"></script>
 
 </body>
 </html>
