@@ -22,6 +22,8 @@
   var storedStatus;
   var user = "unknown";
   var playerRef;
+  var curWinsList;
+  var curLostList;
 
   //Set database
   var database = firebase.database();
@@ -56,10 +58,15 @@ database.ref().on("value",function(snapshot) {
   P1_Choice = snapshot.val().Game.PlayerOne.play;
   P2_Choice = snapshot.val().Game.PlayerTwo.play;
 
+  //User ID
+  P1_ID = snapshot.val().Game.PlayerOne.Index;
+  P2_ID = snapshot.val().Game.PlayerTwo.Index;
+
 
   //Populate Current Players information
   if (P1_Status === "None") {
     $("#P1_Name").text('Waiting on Player')
+    $("#P1_Record").hide()
   } else {
     $("#P1_Name").text(P1_Player);
     $("#P1_Record").text("Wins: " + P1_Wins + " Losses: " + P1_Losses)
@@ -67,6 +74,7 @@ database.ref().on("value",function(snapshot) {
 
   if (P2_Status === "None") {
     $("#P2_Name").text('Waiting on Player')
+    $("#P2_Record").hide()
   } else {
     $("#P2_Name").text(P2_Player);
     $("#P2_Record").text("Wins: " + P2_Wins + " Losses: " + P2_Losses)
@@ -91,11 +99,15 @@ database.ref().on("value",function(snapshot) {
     
     if (WinnerOutome === 1) {
         $("#WinnerReveal").text("Player One Wins!") //Display Winner
-        //Update Record for player one
+        //Update win for player one
+        var curWins = parseInt(curWinsList[P1_ID])
+        var totalWins = curWins + 1
+
+        curWinsList[P1_ID] = totalWins
+        console.log(curWinsList);
 
     } else if (WinnerOutome === 2) {
         $("#WinnerReveal").text("Player Two Wins!")
-        //Update Record for player two
 
     } else {
       $("#WinnerReveal").text("Tie Game.")
@@ -154,7 +166,6 @@ function decideWinner(P1_Choice,P2_Choice) {
 //player Submits Choice (updates user choice in Firebase)''''''''''''''''''''''''''''''''''''''
 $("#P1_Rock").on("click",function (event){
     var check = sessionStorage.getItem('player')
-    console.log(check);
     if (P1_Status == "In-Play" && check == 1) {
       playerplayRef = playerRef.child('play')
       playerplayRef.set ("Rock")
@@ -227,6 +238,7 @@ $("#Login").on("click", function (event) {
           //Change Player One Status and other Validations
           if (P1_Status ==="None") {
             P1_Status = "In-Play";
+            $("#P1_Record").show()
 
             //Set session  storage to identify player
             sessionStorage.setItem("player", 1);
@@ -239,7 +251,8 @@ $("#Login").on("click", function (event) {
               status: P1_Status,
               Wins: Wins,
               Losses: Losses,
-              play: "None"
+              play: "None",
+              Index: indexNum
             })
 
             playerRef.onDisconnect().set ({
@@ -247,13 +260,14 @@ $("#Login").on("click", function (event) {
               status: "None",
               Wins: 0,
               Losses: 0,
-              play: "None"
+              play: "None",
             })
 
 
           //Change Player Two Status and Other Validation
           } else if (P2_Status ==="None" && sessionStorage.getItem('player')!=1) {
             P2_Status = "In-Play";
+            $("#P2_Record").show()
 
             //Set session  storage to identify player
             sessionStorage.setItem("player", 2);
@@ -266,7 +280,8 @@ $("#Login").on("click", function (event) {
               status: P2_Status,
               Wins: Wins,
               Losses: Losses,
-              play: "None"
+              play: "None",
+              Index: indexNum
             })
 
             playerRef.onDisconnect().set ({
@@ -274,7 +289,7 @@ $("#Login").on("click", function (event) {
               status: "None",
               Wins: 0,
               Losses: 0,
-              play: "None"
+              play: "None",
             })
 
           } else {
@@ -323,12 +338,14 @@ function addMessage() {
 
 //Create Logoff option while in window''''''''''''''''''''''''''''''''''''''''''''''
 $("#Logout").on("click",function(event) {
+
+  //reset
   try {playerRef.set ({
     Name: "None",
     status: "None",
     Wins: 0,
     Losses: 0,
-    play: "None"
+    play: "None",
   })} catch(err) {
   }
 
@@ -356,6 +373,8 @@ $("#Kickoff").on("click",function(event) {
   sessionStorage.setItem("player", 0);
 
   resetOptions();
+  $("#P1_Record").hide()
+  $("#P2_Record").hide()
 
 })
 
