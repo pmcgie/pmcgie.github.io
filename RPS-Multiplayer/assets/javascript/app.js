@@ -9,6 +9,11 @@
   };
   firebase.initializeApp(config);
 
+
+//reset local storage for game
+localStorage.setItem("playerName","None");
+localStorage.setItem("playerStatus","None");
+
 //Global Variables
   //Array Variables (associated with Firebase)
   var curUserList;
@@ -18,6 +23,8 @@
   var curplayerList;
   var P1_Status;
   var P2_Status;
+  var storedStatus;
+  var user = "unknown";
 
   //Set
   var database = firebase.database();
@@ -50,8 +57,8 @@ $("#Signup").on("click",function(event) {
   var losses = 0;
 
   //Clear inputs after submittal
-  $("#username").empty();
-  $("#password").empty();
+  $("#username").val('');
+  $("#password").val('');
 
   //Check to see if ID is taken...also verify password
   if (curUserList.includes(user)) {
@@ -76,7 +83,7 @@ $("#Signup").on("click",function(event) {
 
   }
 
-})
+});
 
 //User Login Action'''''''''''''''''''''''''''''''''''''''''''''''
 $("#Login").on("click", function (event) {
@@ -86,11 +93,11 @@ $("#Login").on("click", function (event) {
   var password = $("#password").val();
 
   //Clear inputs after submittal
-  $("#username").empty();
-  $("#password").empty();
+  $("#username").val('');
+  $("#password").val('');
 
   var storedName = localStorage.getItem("playerName")
-  var storedStatus = localStorage.getItem("playerStatus")
+  storedStatus = localStorage.getItem("playerStatus")
 
   if (storedStatus ==="In-Play") {
 
@@ -122,7 +129,6 @@ $("#Login").on("click", function (event) {
             $("#P1_Record").text("Wins: " + curWinsList[indexNum] + " Losses: " + curLostList[indexNum])
           
             //Update Local Storage for P1
-            localStorage.clear();
             localStorage.setItem("playerName",user);
             localStorage.setItem("playerStatus",P1_Status);
 
@@ -146,7 +152,6 @@ $("#Login").on("click", function (event) {
             $("#P2_Record").text("Wins: " + curWinsList[indexNum] + " Losses: " + curLostList[indexNum])
           
             //Update Local Storage for P2
-            localStorage.clear();
             localStorage.setItem("playerName",user);
             localStorage.setItem("playerStatus",P2_Status);
 
@@ -173,3 +178,32 @@ $("#Login").on("click", function (event) {
 });
 
 //Need command that when user leaves browser it will change local storage status and kick them out of game
+// Execute a function when the user releases a key on the keyboard
+$("#message").keypress(function(e) {
+  if(e.which == 13) {
+    addMessage() 
+  }
+});
+
+//Post Message
+$("#sendMessage").on("click", function (event) {
+  addMessage() 
+});
+
+function addMessage() {
+    
+  //Set up for adding row to table
+    var tableBody = $("tbody");
+    var tRow = $("<tr>");
+    var tdUser = $("<td>").text(user);
+    var tdMessage = $("<td>").text($("#message").val());
+  
+    tRow.append(tdUser, tdMessage);
+    tableBody.append(tRow);
+
+    $("#message").val('');
+}
+
+
+
+

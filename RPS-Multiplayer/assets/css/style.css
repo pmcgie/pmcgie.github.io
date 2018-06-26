@@ -1,5 +1,8 @@
 #initButtons{
     color: aliceblue;
+    background-color: rgb(3, 3, 41);
+    text-align: center;
+    border-radius: 10px;
 }
 
 #send{
@@ -16,4 +19,22 @@
 #P2_Rock,#P2_Paper,#P2_Scissors,#P1_Rock,#P1_Paper,#P1_Scissors {
     width: 100%;
     border: .5px solid black;
+}
+
+
+#new-user{
+    padding-top: 20px;
+    background-color: rgb(3, 3, 41);
+    text-align: center;
+    border-radius: 10px;
+}
+
+#username {
+    margin: 0px 0px 20px 60px; 
+    text-align: center;
+}
+
+#password {
+    margin: 10px;
+    text-align: center;
 }

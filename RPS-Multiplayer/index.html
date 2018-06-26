@@ -26,7 +26,7 @@
 
 <body>
 
-    <div class="jumbotron jumbotron-fluid" style="padding-bottom: 30px; padding-top: 30px; margin-bottom: 10px;">
+    <div class="jumbotron jumbotron-fluid" style="padding-bottom: 10px; padding-top: 10px; margin-bottom: 10px;">
         <div class="container">
             <h1>Rock,Paper, Scissors!</h1>
             <p class="lead">No need to have human interaction when you can play this game online instead!</p>
@@ -34,16 +34,20 @@
     </div>
     <br>
 
-    <div class="row">
-        <div class="col-lg-4"></div>
-        <form  class="col-lg-6" id="new-user">
-            <input type="text" id="username" placeholder="Enter User Name"/>
-            <input style='margin: 10px;' type="text" id='password' placeholder="Enter Password">
+    <div class="row" id="user_init">
+        <div class="col-sm-2"></div>
+        <form  class="col-lg-8" id="new-user">
+            <input type="text" id="username" placeholder="Enter User Name">
+            <input type="text" id='password' placeholder="Enter Password">
             
             <div class="row" id="initButtons">
-                <a id="Signup" style='margin:5px 5px 5px 20px;' class="btn btn-primary">Create New User</a>
-                <a id="Login" style='margin:5px' class="btn btn-primary">Login</a>
-                <a id="Logout" style='margin:5px' class="btn btn-primary">Logout</a>
+                <div class="col-sm-2"></div>
+                <div class="col-sm-8">
+                    <a id="Signup" style='margin:5px;' class="btn btn-primary">Create New User</a>
+                    <a id="Login" style='margin:5px' class="btn btn-primary">Login</a>
+                    <a id="Logout" style='margin:5px' class="btn btn-primary">Logout</a>
+                    <a id="Kickoff" style='margin:5px' class="btn btn-primary">Kick Off Other User</a>
+                </div>
             </div>
         </form>		
     </div>
@@ -80,9 +84,17 @@
                 <div><a id="P2_Paper" class="btn btn-light">Paper</a></div>
                 <div><a  id="P2_Scissors" class="btn btn-light">Scissors</a></div>
             </div>
-            <div  id="P1_Decision"></div>
+            <div id="P1_Decision"></div>
             <div id="P2_Record"></div>
         </div>
+    </div>
+
+    <br>
+
+    <div class="row" style="margin-top: 10px; text-align: center;">
+        <form  class="col-lg-12" onsubmit="return false;">
+            <input action="#" class= "col-lg-6" type="text" id="message" name="message" placeholder="Message">
+        </form>		
     </div>
 
     <br>
@@ -97,29 +109,19 @@
                     <table class="table table-bordered table-striped">
                         <thead>
                             <tr>
-                                <th>
+                                <th style="width: 30%;">
                                     Username
                                 </th>
+                                
                                 <th>
                                     Message
                                 </th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td colspan="2">No messages</td>
-                            </tr>
                         </tbody>
                     </table>
                 </div>
-            </div>
-
-			<div class="row">
-                <div class="col-lg-3"></div>
-				<form  class="col-lg-9" id="new-user">
-					<input class="col-lg-6" type="text" name="message" placeholder="Message" />
-					<a id="send" class="btn btn-primary">SEND</a>
-				</form>		
             </div>
             
 		</div>
