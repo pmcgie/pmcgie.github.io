@@ -75,12 +75,14 @@ database.ref().on("value",function(snapshot) {
   if (P1_Choice !="None") {
     $("#P1_Options").hide()
     $("#P1_Record").hide()
+    $("#P1_Decision").show()
     $("#P1_Decision").text("player one has submitted response, waiting for player two")
   }
 
   if (P2_Choice !="None") {
     $("#P2_Options").hide()
     $("#P2_Record").hide()
+    $("#P2_Decision").show()
     $("#P2_Decision").text("player two has submitted response, waiting for player one")
   }
 
@@ -88,12 +90,23 @@ database.ref().on("value",function(snapshot) {
     var WinnerOutome = decideWinner(P1_Choice,P2_Choice);
     
     if (WinnerOutome === 1) {
-        $("#WinnerReveal").text("Player One Wins!")
+        $("#WinnerReveal").text("Player One Wins!") //Display Winner
+        //Update Record for player one
+
     } else if (WinnerOutome === 2) {
         $("#WinnerReveal").text("Player Two Wins!")
+        //Update Record for player two
+
     } else {
       $("#WinnerReveal").text("Tie Game.")
     }
+
+    setTimeout("$('#WinnerReveal').text('New Game will Start in 2 Seconds')",2000);
+    setTimeout(resetOptions,4000)
+
+    //reset play choices for players
+    database.ref("Game/PlayerOne/play").set("None")
+    database.ref("Game/PlayerTwo/play").set("None")
     
   }
 
@@ -101,6 +114,16 @@ database.ref().on("value",function(snapshot) {
 
 //'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
+//Reset Game options
+function resetOptions() {
+  $('#WinnerReveal').text('')
+  $("#P1_Options").show()
+  $("#P1_Record").show()
+  $("#P2_Options").show()
+  $("#P2_Record").show()
+  $("#P1_Decision").hide()
+  $("#P2_Decision").hide()
+}
 
 //Decide Winner'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 function decideWinner(P1_Choice,P2_Choice) {
@@ -131,7 +154,8 @@ function decideWinner(P1_Choice,P2_Choice) {
 //player Submits Choice (updates user choice in Firebase)''''''''''''''''''''''''''''''''''''''
 $("#P1_Rock").on("click",function (event){
     var check = sessionStorage.getItem('player')
-    if (check == 1) {
+    console.log(check);
+    if (P1_Status == "In-Play" && check == 1) {
       playerplayRef = playerRef.child('play')
       playerplayRef.set ("Rock")
     }
@@ -139,7 +163,7 @@ $("#P1_Rock").on("click",function (event){
 
 $("#P1_Paper").on("click",function (event){
   var check = sessionStorage.getItem('player')
-  if (check == 1) {
+  if (P1_Status == "In-Play" && check == 1) {
     playerplayRef = playerRef.child('play')
     playerplayRef.set ("Paper")
     }
@@ -147,7 +171,7 @@ $("#P1_Paper").on("click",function (event){
 
 $("#P1_Scissors").on("click",function (event){
   var check = sessionStorage.getItem('player')
-  if (check == 1) {
+  if (P1_Status == "In-Play" && check == 1) {
     playerplayRef = playerRef.child('play')
     playerplayRef.set ("Scissors")
   }
@@ -155,7 +179,7 @@ $("#P1_Scissors").on("click",function (event){
 
 $("#P2_Rock").on("click",function (event){
   var check = sessionStorage.getItem('player')
-  if (check == 2) {
+  if (P2_Status == "In-Play" && check == 2) {
     playerplayRef = playerRef.child('play')
     playerplayRef.set ("Rock")
   }
@@ -163,7 +187,7 @@ $("#P2_Rock").on("click",function (event){
 
 $("#P2_Paper").on("click",function (event){
   var check = sessionStorage.getItem('player')
-  if (check == 2) {
+  if (P2_Status == "In-Play" && check == 2) {
     playerplayRef = playerRef.child('play')
     playerplayRef.set ("Paper")
   }
@@ -171,7 +195,7 @@ $("#P2_Paper").on("click",function (event){
 
 $("#P2_Scissors").on("click",function (event){
   var check = sessionStorage.getItem('player')
-  if (check == 2) {
+  if (P2_Status == "In-Play" && check == 2) {
     playerplayRef = playerRef.child('play')
     playerplayRef.set ("Scissors")
   }
@@ -296,6 +320,44 @@ function addMessage() {
 
     $("#message").val('');
 }
+
+//Create Logoff option while in window''''''''''''''''''''''''''''''''''''''''''''''
+$("#Logout").on("click",function(event) {
+  try {playerRef.set ({
+    Name: "None",
+    status: "None",
+    Wins: 0,
+    Losses: 0,
+    play: "None"
+  })} catch(err) {
+  }
+
+})
+
+//Reset Entire Game of Users''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+$("#Kickoff").on("click",function(event) {
+  
+  //reset database players in game
+  database.ref("Game/PlayerOne").set ({
+    Name: "None",
+    status: "None",
+    Wins: 0,
+    Losses: 0,
+    play: "None"
+  })
+  database.ref("Game/PlayerTwo").set ({
+    Name: "None",
+    status: "None",
+    Wins: 0,
+    Losses: 0,
+    play: "None"
+  })
+
+  sessionStorage.setItem("player", 0);
+
+  resetOptions();
+
+})
 
 
 //Other Items not impacting game play, only database side'''''''''''''''''''''''''''''
