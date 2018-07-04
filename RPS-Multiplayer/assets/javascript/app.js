@@ -111,13 +111,21 @@ database.ref().on("value",function(snapshot) {
         $("#WinnerReveal").text("Player One Wins!")
         var totalWins = P1_Wins + 1
         var totalLosses = P2_Losses + 1
+        
 
         database.ref("Game/PlayerOne/Wins").set(totalWins)
         database.ref("Game/PlayerTwo/Losses").set(totalLosses)
 
+        var P1_ID = snapshot.val().Game.PlayerOne.Index;
+        var P2_ID = snapshot.val().Game.PlayerTwo.Index;
+
+       //Add wins and losses
+        curWinsList[P1_ID] = totalWins;
+        curLostList[P2_ID] = totalLosses;
+
+        //Move to Firebase Player Records
         database.ref("UserInformation/WinsList/" + P1_ID).set(totalWins)
         database.ref("UserInformation/LossesList/" + P2_ID).set(totalLosses)
-
 
     } else if (WinnerOutome === 2) {
         $("#WinnerReveal").text("Player Two Wins!")
@@ -127,6 +135,14 @@ database.ref().on("value",function(snapshot) {
         database.ref("Game/PlayerTwo/Wins").set(totalWins)
         database.ref("Game/PlayerOne/Losses").set(totalLosses)
 
+        var P1_ID = snapshot.val().Game.PlayerOne.Index;
+        var P2_ID = snapshot.val().Game.PlayerTwo.Index;
+
+        //Add wins and losses
+        curWinsList[P2_ID] = totalWins;
+        curLostList[P1_ID] = totalLosses;
+
+        //Move to Firebase Player Records
         database.ref("UserInformation/WinsList/" + P2_ID).set(totalWins)
         database.ref("UserInformation/LossesList/" + P1_ID).set(totalLosses)
 

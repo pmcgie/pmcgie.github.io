@@ -1,4 +1,4 @@
-//Global Variables
+//Global Variables --- COPY APP.JS AND HAVE IT REPLICATE APP.JS
 var userName
 var curChat
 var curMessageUser = [];
@@ -59,5 +59,6 @@ function postComment() {
 
     curMessageUser.push(tdUser);
     curMessage.push(tdMessage);
+
 
 }
