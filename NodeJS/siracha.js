@@ -10,3 +10,5 @@ if (a === b) {
 }
 
 console.log( process.argv[2]=== process.argv[3])
+
+//module.exports = {}
