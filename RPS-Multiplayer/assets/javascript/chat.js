@@ -1,64 +1,81 @@
-//Global Variables --- COPY APP.JS AND HAVE IT REPLICATE APP.JS
-var userName
-var curChat
-var curMessageUser = [];
+//Global Variables
 var curMessage = [];
+var P1_Player;
+var P2_Player;
+var userName;
 
-//Set up game on load'''''''''''''''''''''''''''''''''''''''
+
+//Store Messages Firebase
 database.ref().on("value",function(snapshot) {
 
-    //User ID's
-    P1_ID = snapshot.val().Game.PlayerOne.Name;
-    P2_ID = snapshot.val().Game.PlayerTwo.Name;
+    //players current messages
+    var playerMessage = snapshot.val().Chat.CurMessage;
+
+    P1_Player = snapshot.val().Game.PlayerOne.Name;
+    P2_Player = snapshot.val().Game.PlayerTwo.Name;
+
+
+    //Message from player 1 will now be saved to Chat Array
+    if (playerMessage !="None") {
+
+        var playerMessage = snapshot.val().Chat.CurMessage;
+
+        //Change Firebase
+        database.ref("Chat/CurMessage").set("None")
+
+        //push dialogue to array and into Firebase
+        curMessage.push(playerMessage);
+        database.ref("Chat/ChatString").set(curMessage);
+
+        //Post on message board
+        $("#chatDisplay").empty();
+        $("#chatDisplay").prepend(curMessage)
+
+    }
 
 })
 
-database.ref("Chat").on("value",function(snapshot){
-
-})
 
 //On enter kicks off events and generates message
 $("#message").keypress(function(e) {
     if(e.which == 13) {
       assignUser();
-      postComment();
+      $("#message").val('');
     }
 });    
 
-
+//Assign User Name for Message
 function assignUser() {
-
-    //Need player reference number (which is stored in session storage)
-    var playerNum = sessionStorage.getItem('player')
     
+    //User ID's
+    var playerNum = sessionStorage.getItem('player')
+
     if (playerNum == 1) {
-        userName = P1_ID;
+        userName = P1_Player;
+        postComment()
 
     } else if(playerNum == 2) {
-        userName = P2_ID
+        userName = P2_Player;
+        postComment()
 
     } else {
-        userName = "No Name"
+        userName = "No Name";
+        database.ref("Chat/CurMessage").set("None")
     }
 }
 
+//Post Comment and save in Firebase "current message"
 function postComment() {
 
     //convert Firebase Time
     var timeStamp = new Date()
     var convertedTime = moment(timeStamp).format('MMMM Do YYYY, h:mm:ss a');
     
-  
-    var tableBody = $("tbody");
-    var tRow = $("<tr>");
-    var tdUser = $("<td>").text(convertedTime + "     "+ userName);
-    var tdMessage = $("<td>").text($("#message").val());
-
-    tRow.prepend(tdUser, tdMessage);
-    tableBody.prepend(tRow);
-
-    curMessageUser.push(tdUser);
-    curMessage.push(tdMessage);
-
+    //create new div w/ message
+    var Message = $("#message").val();
+    var storedMessage = ("<div style=margin-left:5px;>" + convertedTime + "  " +  userName +  " : " + Message + "</div>");
+    
+    //Change in firebase current message
+    database.ref("Chat/CurMessage").set(storedMessage);
 
 }
