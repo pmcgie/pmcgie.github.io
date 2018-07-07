@@ -1,0 +1,68 @@
+header {
+    padding: 50px 0px 0px 0px;
+    background-color: rgb(19, 56, 165);
+}
+
+div.container4 {
+    margin-top: 30px;
+    height: 1em;
+    position: relative;
+    width: 100%;
+    background-color: rgb(216, 209, 209);
+    border: .5px solid black;
+}
+
+div.container4 p {
+    margin: -15px;
+    background: yellow;
+    position: absolute;
+    font-size: 20px;
+    top: 5%;
+    left: 45%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 5px 20px 5px 20px;
+    border-radius: 5px;
+    display: block;
+    font-family: "Helvetica", "Arial", sans-serif;
+    font-weight: bold;
+    transform: skew(10deg);
+}
+
+IMG.displayed {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 50%;
+    width: 250px;
+    height: 250px;
+    left: 50%;
+}
+
+
+
+footer {
+    float: left;
+    background-color: #666666;
+    font-family: 'Arial', 'Helvetica Neue', Helvetica, sans-serif;
+    width: 100%;
+    position: fixed;
+    text-align: center;
+    margin: 0px;
+    left: 0;
+    bottom: 0;
+    color: white;
+    font-size: 75%;
+    padding-top: 10px;
+}
+
+/*use later
+.element{
+    shape-outside: circle(30%);
+    transition: shape-outside 1s;
+    float: left;
+  }
+  
+  .element:hover{
+    shape-outside: circle(50%);
+  }*/
