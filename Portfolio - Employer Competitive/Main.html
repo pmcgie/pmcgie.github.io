@@ -12,6 +12,9 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+   
+    <!-- Material Design Bootstrap -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.4/css/mdb.min.css" rel="stylesheet">
 
     <!--Materialize-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
@@ -49,17 +52,42 @@
 
 </head>
 
-<body>
+<body id="MainBody">
 
-    <header>
+    <!--Display Main Picture with Name-->
+    <header class="text-center" id="MainHead">
         <img class="displayed" src="assets/images/Profile_Pic.jpg">
         <div class=container4>
-            <p>Paul McGie</p>
+            <p>PAUL MCGIE</p>
           </div>
         <br>
         <div></div>
     </header>
 
+    <!-- Section: Features v.1 -->
+    <div class="container">
+        <section class="text-center my-5">
+
+            <div class="col-md-1"></div>
+            <!-- Section heading -->
+            <h2 class="h1-responsive white-text font-weight-bold my-5" id="MS"> Mission Statement</h2>
+            <!-- Section description -->
+            <p class="lead white-text mx-auto mb-5">Offer analytical insights, programming expertise, and business intelligence solutions. 
+                Collaborate and educate stakeholder(s) with new ideas and perspectives as well as leverage new technologies to achieve positive results.
+            </p>
+            <div class="col-md-1"></div>
+        
+        </section>
+    </div>
+
+    <!--Category Pages-->
+    <div class="container" id="MainButtons">
+        <div class="row">
+            <button type="button" class="btn btn-mdb-color" id="butAdd"><a href="Overview.html" style="padding-right: 20px; color: #fff!important;"></a>Overview</button>
+            <button type="button" class="btn btn-mdb-color" id="butAdd">Accomplishments</button>
+            <button type="button" class="btn btn-mdb-color" id="butAdd">Contact</button>
+        </div>
+    </div>
 
     <footer>
         <p>Copyright&copy;2018</p>

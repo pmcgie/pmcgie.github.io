@@ -14,8 +14,8 @@ var request = require("request");
 var movieName = process.argv[2];
 
 // Then run a request to the OMDB API with the movie specified
-//var queryUrl = "http://www.omdbapi.com/?t=" + movieName + "&y=&plot=short&apikey=trilogy";
-var queryUrl = "https://api.giphy.com/v1/gifs/search?q=" + movieName + "&api_key=DX02zQ16zROY7j7IgKA3WD33lOlEJYaj&limit=10"; //assigns limit of search responses
+var queryUrl = "http://www.omdbapi.com/?t=" + movieName + "&y=&plot=short&apikey=77fae8a8";
+//var queryUrl = "https://api.giphy.com/v1/gifs/search?q=" + movieName + "&api_key=DX02zQ16zROY7j7IgKA3WD33lOlEJYaj&limit=10"; //assigns limit of search responses
 
 // This line is just to help us debug against the actual URL.
 console.log(queryUrl);
@@ -27,7 +27,7 @@ request(queryUrl, function(error, response, body) {
 
     // Parse the body of the site and recover just the imdbRating
     // (Note: The syntax below for parsing isn't obvious. Just spend a few moments dissecting it).
-    console.log("Release Year: " + JSON.parse(body))//.Year);
+    console.log("Release Year: " + JSON.parse(body).Year);
   } else {
     console.log(error);
   }
