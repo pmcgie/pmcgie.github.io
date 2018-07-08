@@ -20,6 +20,8 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
         
+        <!--Add Link to JS-->
+        <link type="text/javascript" src="assets/JS/Timeline.js">
     
         <!--Add FavIcon 32px by 32px-->
         <link rel="shortcut icon" type="image/png" href="assets/images/favicon.png"/>
@@ -53,6 +55,8 @@
     </head>
 
     <body id="OverviewBody">
+
+        <!--Main Header-->
         <div class="jumbotron jumbotron-fluid" id="OverviewHead">
             <div class="container">
                 <h1 class="display-4" style="font-size: 30px; color: aliceblue;font-family: 'Lilita One', cursive;">Overview: Paul McGie</h1>
@@ -64,35 +68,39 @@
             </div>
         </div>
 
+
+
         <ul class="list-group">
+            <div class="col-lg-2"></div>
             <div class="col-lg-6">
-                <li class="list-group-item">History</li>
+                <li class="list-group-item" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample" id="History">History (Click Here to Expand/Collapse Timeline)</li>
 
-                <section class="timeline">
-                        <ol>
-                          <li>
+                <div class="collapse" id="collapseExample">
+                    <div class="card card-body">
+                        <section class="timeline" style="color: aliceblue">
+                        <ul>
+                            <li>
                             <div>
-                              <time>1934</time>
-                              Some content here
+                                <time>1934</time>
+                                Some content here
                             </div>
-                          </li>
+                            </li>
+                            <li>
+                            <div>
+                                <time>1934</time>
+                                Some content here
+                            </div>
+                            </li>
                             
-                          <!-- more list items here -->
-                           
-                          <li></li>
-                        </ol>
-                         
-                        <div class="arrows col-lg-2">
-                          <button class="arrow arrow__prev disabled" disabled>
-                            <img src="assets/images/backArrow.png" width="25%" height="25%" alt="prev timeline arrow">
-                          </button>
-                          <button class="arrow arrow__next">
-                            <img src="assets/images/forwardArrow.png" width="25%" height="25%" alt="next timeline arrow">
-                          </button>
-                        </div>
-                </section>
+                            <!-- more list items here -->
+                        </ul>
+                        </section>
+                    </div>
+                </div>
 
-                
+
+
+                <br>
                 
                 <li class="list-group-item">Dapibus ac facilisis in</li>
                 <li class="list-group-item">Morbi leo risus</li>
@@ -100,5 +108,7 @@
                 <li class="list-group-item">Vestibulum at eros</li>
             </div>
         </ul>
+
+        <link type="text/javascript" src="assets/JS/Timeline.js">
     </body>
 </html>
