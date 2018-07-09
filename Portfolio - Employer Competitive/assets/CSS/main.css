@@ -59,6 +59,8 @@ IMG.displayed {
     font-weight: bolder;
     box-shadow: 0 3px 0 0 #007299;
     width: 200px;
+    padding-right: 20px; 
+    color: #fff!important;
 }
 
 #MS{
@@ -179,3 +181,9 @@ footer {
       border-color: transparent #F45B69 transparent transparent;
     }
   }
+
+#LineStyle{
+  background-color: black;
+  color: aliceblue;
+  padding: 10px 100px 10px 0px;
+}
