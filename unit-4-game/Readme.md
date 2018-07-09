@@ -21,4 +21,4 @@ In order for this game to work, you need to id different parts of the html for D
 
 
 ##Technical Approach
-When I approach a project, I draw the layout by hand. From there, I create the grid and in this case, made sure to tag various id's in specific locations for DOM interaction. After that I created the JavaScript logic.
+When I approach a project, I draw the layout by hand. From there, I create the grid and in this case, made sure to tag various id's in specific locations for DOM interaction. After that I created the JavaScript logic. 
