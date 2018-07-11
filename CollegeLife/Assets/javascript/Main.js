@@ -1,3 +1,5 @@
+
+
 //Global Variables
 var colleges = '4bf58dd8d48988d1ae941735';
 var client_id = "EC4IKNOQF0EC2MA51QZHIR4LQ0PC0VK3MEW1WBEXXF02MYNI"
