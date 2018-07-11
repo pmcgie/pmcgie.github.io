@@ -1,6 +1,6 @@
 //Create Global Variables
 var questions
-var count = 6; 
+var count = 5; 
 var startit;
 var counter;
 var intervalId;
@@ -185,13 +185,15 @@ var timer = {
 //Starting the Game''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 $('.questionmark').click(function(){
     
+    $( ".questionmark" ).hide();
+
     $("#myAudio")[0].play();
     $("#instruction").empty();
     $("#instruction").removeAttr('id');
 
-    setTimeout(getReady,1000*2);
-    setTimeout(playTime,1000*12);
-    setTimeout(startQuestions,1000*14);
+    setTimeout(getReady,1000*.5);
+    setTimeout(playTime,1000*11);
+    setTimeout(startQuestions,1000*12);
     setTimeout(startInterval,1000);
 });
 
@@ -206,9 +208,9 @@ $('.questionmark').click(function(){
     //Countdown to game start
     function InitialTimer(){
         if(count > 0){
-            $(".questionmark").fadeOut('slow', function(){
-                $(".questionmark").text(count);
-                $(".questionmark").fadeIn();
+            $(".countdown").fadeOut('slow', function(){
+                $(".countdown").text(count);
+                $(".countdown").fadeIn();
                 count--;
             });
         }
@@ -218,10 +220,10 @@ $('.questionmark').click(function(){
     }
 
     function getReady() {
-        $(".questionmark").html("<h2>Get Ready to Play the Game!</h2>").fadeOut(2000);
+        $(".countdown").html("<h2>Get Ready to Play the Game!</h2>").fadeOut(2000);
     }
     function playTime() {
-        $('.questionmark').html("<h2 style:'text-align: center;'>It's Time to Play Trivia!<h2>")
+        $('.countdown').html("<h2 style:'text-align: center;'>It's Time to Play Trivia!<h2>")
     }
 //end of section'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
@@ -230,7 +232,7 @@ function startQuestions(){
 
     //Remove ridiculous question mark and other things
     usedQuestions = [];
-    $('.questionmark').empty();
+    $('.countdown').empty();
     $('.questionmark').removeClass('.questionmark'); //for future use and reference use .hide
     $("#myAudio")[0].pause();
     

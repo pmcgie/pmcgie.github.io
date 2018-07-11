@@ -202,3 +202,10 @@ footer {
     margin-right: 0px;
   }
 }
+
+/*Contact Page*/
+#ContactInfo{
+  background-color: rgb(245, 247, 247);
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 20px;
+}

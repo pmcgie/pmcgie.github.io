@@ -14,7 +14,7 @@ var request = require("request");
 var movieName = process.argv[2];
 
 // Then run a request to the OMDB API with the movie specified
-var queryUrl = "http://www.omdbapi.com/?t=" + movieName + "&y=&plot=short&apikey=77fae8a8";
+var queryUrl = "https://www.omdbapi.com/?t=" + movieName + "&y=&plot=short&apikey=77fae8a8";
 //var queryUrl = "https://api.giphy.com/v1/gifs/search?q=" + movieName + "&api_key=DX02zQ16zROY7j7IgKA3WD33lOlEJYaj&limit=10"; //assigns limit of search responses
 
 // This line is just to help us debug against the actual URL.

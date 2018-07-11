@@ -36,6 +36,12 @@ body{
     text-align:center;
 }
 
+.countdown {
+    font-size:200px;
+    color:black;
+    text-align:center;
+}
+
 .buttonStart{
     background:url("../images/questionmark.png") no-repeat;
     cursor:pointer;
