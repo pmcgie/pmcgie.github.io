@@ -33,6 +33,12 @@ div.container4 p {
     font-weight: bold;
 }
 
+#pics{
+  width: 100%;
+  height: 100%;
+}
+
+
 IMG.displayed {
     display: block;
     margin-left: auto;
@@ -54,10 +60,10 @@ IMG.displayed {
     padding: 10px 5px 40px 5px;
     border-radius: 10px;
     font-weight: bolder;
-    box-shadow: 0 3px 0 0 #007299;
     width: 200px;
     padding-right: 20px; 
     color: #fff!important;
+    border: 1px solid black;
 }
 
 #MS{
@@ -208,4 +214,12 @@ footer {
   background-color: rgb(245, 247, 247);
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   font-size: 20px;
+}
+
+
+/*For Carousel*/
+.item {
+  background-size: cover;
+  width: 100%;
+  height: 100%;
 }
