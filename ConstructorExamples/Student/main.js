@@ -1,18 +1,10 @@
-/*In this activity we are going to make two constructors in two different files in which one constructor calls upon the other within it.
+// requiring our Classroom module exported from classroom.js
+var Classroom = require("./Classroom.js");
 
-The first constructor function is called “Student” and has the following properties within it...
+// creating and storing a new classroom object
+var firstClass = new Classroom("Ahmed", 3187);
 
-Name of the student
-Favorite subject
-Current GPA
-The second constructor function is called “Class” and has the following properties within it...
+// calling the addStudent method on our firstClass object
+firstClass.addStudent("Jacob", "Coding", 3.87);
 
-An array of students within the class
-Number of students in the class
-Name of the professor
-Room number
-The Student constructor function from above which adds a new student to the class
-BONUS: Make it so that that your application can take in user input to add new classes and new students to those classes.*/
-
-//
-var Class = require("./class.js");
+console.log(firstClass);
