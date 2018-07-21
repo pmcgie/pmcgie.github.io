@@ -1,0 +1,14 @@
+DROP DATABASE IF EXISTS bid_DB;
+
+CREATE DATABASE bid_DB;bidlist
+
+USE bid_DB;
+
+CREATE TABLE bidList (
+  id INT NOT NULL AUTO_INCREMENT,
+  bidtype VARCHAR(100) NOT NULL,
+  biditem VARCHAR(100) NOT NULL,
+  bidPrice DECIMAL(10,2) NOT NULL,
+  curBidder VARCHAR(100),
+  PRIMARY KEY (id)
+);
