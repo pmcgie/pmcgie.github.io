@@ -1,4 +1,4 @@
-##Instructions
+## Instructions
 
 The completed game should meet the following criteria:
 
@@ -7,7 +7,7 @@ Your solution should have, at minimum, three files:
 
 
 
-###First File
+### First File
 Letter.js: Contains a constructor, Letter. This constructor should be able to either display an underlying character or a blank placeholder (such as an underscore), depending on whether or not the user has guessed the letter. That means the constructor should define:
 
 
@@ -17,7 +17,7 @@ A function that returns the underlying character if the letter has been guessed,
 A function that takes a character as an argument and checks it against the underlying character, updating the stored boolean value to true if it was guessed correctly
 
 
-###Second File
+### Second File
 Word.js: Contains a constructor, Word that depends on the Letter constructor. This is used to create an object representing the current word the user is attempting to guess. That means the constructor should define:
 
 
@@ -26,7 +26,7 @@ A function that returns a string representing the word. This should call the fun
 A function that takes a character as an argument and calls the guess function on each letter object (the second function defined in Letter.js)
 
 
-###Third File
+### Third File
 index.js: The file containing the logic for the course of the game, which depends on Word.js and:
 
 
@@ -36,7 +36,7 @@ Prompts the user for each guess and keeps track of the user's remaining guesses
 
 
 
-####Other Notes
+#### Other Notes
 Letter.js should not require any other files.
 Word.js should only require Letter.js
 HINT: Write Letter.js first and test it on its own before moving on, then do the same thing with Word.js
