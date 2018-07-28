@@ -32,6 +32,11 @@ var table = new Table({
 
 //Global Variables
 var product_ID_Max = 0;
+var productInventory = 0;
+var productName = '';
+var productID = 0;
+var productPrice = 0;
+var quantityPurchased = 0;
 
 //Run initial Display of Products for consumer
 displayProducts();
@@ -52,10 +57,7 @@ function displayProducts() {
         console.log('\n' + table.toString());
         //run function to ask user what product they want to buy
         buyProduct();
-        });   
-        
-        
-        
+        });
 }
 
 //The app should then prompt users with two messages.
@@ -76,6 +78,7 @@ function buyProduct() {
 
         //Check to see if valid product ID response
         if (productID >=1 && productID <= product_ID_Max) {
+            console.log("\n")
             howMuch(productID);
         } else {
              console.log("Invalid Product Number. \n");
@@ -84,7 +87,19 @@ function buyProduct() {
       });
 }
 
-function howMuch() {
+function howMuch(productID) {
+
+    //Look up name and current inventory
+    var query = "SELECT * FROM products WHERE id=" + productID;
+    
+    //create variables
+    connection.query(query, function(err, res) {
+        productInventory = res[0].stock_quantity;
+        productName = res[0].product_name;
+        productPrice = res[0].price;
+    })
+
+    // Ask Quantity
     inquirer
     .prompt({
       name: "quantity",
@@ -92,24 +107,50 @@ function howMuch() {
       message: "How much do you want of product?"
     })
     .then(function(answer) {
+
         //Check to see if valid product ID response
-        var quantityPurchased = parseInt(answer.quantity);
+        quantityPurchased = parseInt(answer.quantity);
 
-        console.log(quantityPurchased)
+        //Inform user of how much they ordered
+        console.log("You have ordered " + quantityPurchased + " of " + productName +  "\n")
 
+        //Ensure valid entry
         if (quantityPurchased >=1 && Number.isInteger(quantityPurchased) === true) {
-            updateInventory(answer);
+            
+            //Check to see if there is sufficient inventory
+            if (quantityPurchased > productInventory) {
+                console.log("Insufficient quantity!")
+                howMuch(productID);
+            } else {
+                var totalSale = quantityPurchased * productPrice
+                console.log("Your total purchase comes to $" + commaNumber(totalSale))
+                updateInventory(answer);
+            }
+            
         } else {
              console.log("Need to enter whole number. \n");
-             howMuch();
+             howMuch(productID);
         }
-
-        //Check to see if there is sufficient inventory
-        //var quantityRemaining = SQL Query
 
       });
 }
 
+
+//Update quantity after customer purchase
 function updateInventory() {
-    console.log("test")
+
+    //Need to update remaining quantity after purchase
+    var remainingQuantity = productInventory - quantityPurchased;
+
+    var query = connection.query(
+        'UPDATE products SET ? WHERE ?',
+        [
+            {
+                stock_quantity: remainingQuantity
+            },
+            {
+                id: productID
+            }
+        ]
+    )
 }
