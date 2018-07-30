@@ -3,4 +3,4 @@ In this activity, you'll be creating an Amazon-like storefront with the MySQL sk
 
 #### Customer View (bamazonCustomer)
 As soon as the customer gets to Bamazon, there is a list of products available for offering
-![Alt text](screenshots/customer/customer_productlist.png?raw=true "Customer Initial View")
+[Customer Initial View](screenshots/customer/customer_productlist.png)
