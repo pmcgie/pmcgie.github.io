@@ -124,8 +124,9 @@ function howMuch(productID) {
                 howMuch(productID);
             } else {
                 var totalSale = quantityPurchased * productPrice
-                console.log("Your total purchase comes to $" + commaNumber(totalSale)+ "\n")
+                console.log("Your total purchase is $" + commaNumber(totalSale)+ "\n")
                 updateInventory(answer);
+                updateSales(totalSale,productID);
             }
             
         } else {
@@ -149,6 +150,7 @@ function morePurchases() {
             displayProducts();
         } else {
             console.log("\nThanks for shopping with Bamazon!")
+            connection.end();
         }
       });
 }
@@ -159,7 +161,7 @@ function updateInventory() {
     //Need to update remaining quantity after purchase
     var remainingQuantity = productInventory - quantityPurchased;
 
-    var query = connection.query(
+    connection.query(
         'UPDATE products SET ? WHERE ?',
         [
             {
@@ -171,4 +173,36 @@ function updateInventory() {
         ]
     )
     morePurchases()
+}
+
+// Update Product Sales''''''''''''''''''''''''''''''''''''''''''''''''''
+// Update total sales of product
+function updateSales(totalSale,productID) {
+
+    // Need to pull exist sales of product
+    var query = "SELECT product_sales FROM products WHERE id=" + productID;
+    connection.query(query,function(err,res) {
+        var curSales = res[0].product_sales
+        cumulativeSales(curSales,totalSale,productID)
+    })
+}
+
+// Update with cumulative amount
+function cumulativeSales(curSales,totalSale,productID) {
+
+    // Calculate cumulative sales
+    var cumulativeSales = curSales + totalSale
+
+    // update cumulative sales in SQL
+    connection.query(
+        'UPDATE products SET ? WHERE ?',
+        [
+            {
+                product_sales: cumulativeSales
+            },
+            {
+                id: productID
+            }
+        ]
+    )
 }

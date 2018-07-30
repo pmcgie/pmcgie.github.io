@@ -25,14 +25,19 @@ var connection = mysql.createConnection({
     // Your password
     password: "root",
     database: "bamazon"
-  });
+});
 
 // Global Variables
 var product_ID_Max = 0;
+var depArr = [];
 
 //Run initial choices for manager
+departmentArr();
 managerChoices();
 totalChoices();
+
+//Creates an array of department options
+
 
 //Check to see how many product options exist;
 function totalChoices() {
@@ -218,7 +223,7 @@ function createProduct() {
       {
         type: "list",
         message: "What department do you want to place product in?",
-        choices: ["Aerial", "Clothing", "Music","Other"],
+        choices: ["1. Aerial", "2. Clothing", "3. Music"],
         name: "prodDepartment"
       },
       {
@@ -236,9 +241,11 @@ function createProduct() {
 
         //set variables
         var product = answer.prodName;
-        var department = answer.prodDepartment;
+        var departmentDetails = answer.prodDepartment;
+        var department = departmentDetails.split(".",2);
         var price = parseFloat(answer.prodPrice);
         var quantity = parseInt(answer.prodQuantity);
+        var deptNum = parseInt(departmentDetails.split(".",1))
 
         // Show user output
         console.log("\nNew Product Name: " + product);
@@ -251,7 +258,7 @@ function createProduct() {
         if (quantity>=0 && Number.isInteger(quantity) === true && price>=0) {
             
             // confirm entry and add entry
-            confirm_and_Add_New(product,department,price,quantity);
+            confirm_and_Add_New(product,deptNum,department,price,quantity);
 
         } else {
             console.log("Invalid Entries occurred. Ensure that you enter numeric values for price and stock quantity.\n")
@@ -263,18 +270,20 @@ function createProduct() {
 
 
 // Confirms New Entries
-function confirm_and_Add_New(product,department,price,quantity) {
+function confirm_and_Add_New(product,deptNum,department,price,quantity) {
 
     inquirer.prompt([{
         type: 'confirm',
         name: 'reviewNewEntry',
         message: 'Do you want to proceed with new Entry?'
+
       }]).then(function(answer) {
         
         // If answer is "no" then go back to main menu
-        if (answer.reviewChoices === false) {
-            console.log("No Entry was added")
+        if (answer.reviewNewEntry === false) {
+            console.log("No Entry was added\n");
             managerChoices();
+
         } else {
             
             // Insert new product into  SQL database
@@ -284,9 +293,11 @@ function confirm_and_Add_New(product,department,price,quantity) {
                 "INSERT INTO products SET ?",
                 {
                     product_name: product,
+                    department_id: deptNum,
                     department_name: department,
                     price: price,
-                    stock_quantity: quantity
+                    stock_quantity: quantity,
+                    product_sales: 0
                 }
             )
 
@@ -324,8 +335,8 @@ function confirm_and_update_inventory(ID,productName,productInventory,inventory)
                 ],
             );
 
-                console.log('You now have ' + totalInventory + ' units of ' + productName + ".\n")
-                managerChoices();
+            console.log('You now have ' + totalInventory + ' units of ' + productName + ".\n")
+            managerChoices();
         }
     });
 }
