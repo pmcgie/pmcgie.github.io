@@ -1,5 +1,4 @@
-//Running this application will first display all of the items available for sale. 
-//Include the ids, names, and prices of products for sale.
+// This is the customer module which shows customer all products and allows them to purchase at a set quantity
 
 // set up mysql and inquirer
 var mysql = require("mysql");
@@ -23,12 +22,6 @@ var connection = mysql.createConnection({
 
 // set up for table
 var Table = require('cli-table2');
- 
-// instantiate
-var table = new Table({
-    head: ['ID', 'Product','Price']
-});
-
 
 //Global Variables
 var product_ID_Max = 0;
@@ -43,7 +36,15 @@ displayProducts();
 
 //Function to display all products
 function displayProducts() {
+    
+    // instantiate
+    var table = new Table({
+        head: ['ID', 'Product','Price']
+    });
+
+    // Run Query and display information
     var query = "SELECT * FROM products";
+
     connection.query(query, function(err, res) {
 
         product_ID_Max = res.length + 1
@@ -53,17 +54,16 @@ function displayProducts() {
                 [res[i].id,res[i].product_name,'$'+commaNumber(res[i].price)]
             );
         }
+
         //Show Table Result
         console.log('\n' + table.toString());
+
         //run function to ask user what product they want to buy
         buyProduct();
-        });
+    });
 }
 
-//The app should then prompt users with two messages.
-    //The first should ask them the ID of the product they would like to buy.
-    //The second message should ask how many units of the product they would like to buy.
-
+// Ask customer the ID of the product they would like to buy.
 function buyProduct() {
 
     inquirer
@@ -87,6 +87,7 @@ function buyProduct() {
       });
 }
 
+// How much is customer going to purchase
 function howMuch(productID) {
 
     //Look up name and current inventory
@@ -112,18 +113,18 @@ function howMuch(productID) {
         quantityPurchased = parseInt(answer.quantity);
 
         //Inform user of how much they ordered
-        console.log("You have ordered " + quantityPurchased + " of " + productName +  "\n")
+        console.log("\nYou have ordered " + quantityPurchased + " of " + productName +  "\n")
 
         //Ensure valid entry
-        if (quantityPurchased >=1 && Number.isInteger(quantityPurchased) === true) {
+        if (quantityPurchased >=0 && Number.isInteger(quantityPurchased) === true) {
             
             //Check to see if there is sufficient inventory
             if (quantityPurchased > productInventory) {
-                console.log("Insufficient quantity!")
+                console.log("\nInsufficient quantity!")
                 howMuch(productID);
             } else {
                 var totalSale = quantityPurchased * productPrice
-                console.log("Your total purchase comes to $" + commaNumber(totalSale))
+                console.log("Your total purchase comes to $" + commaNumber(totalSale)+ "\n")
                 updateInventory(answer);
             }
             
@@ -135,6 +136,22 @@ function howMuch(productID) {
       });
 }
 
+//Ask if user wants to purchase anything else
+function morePurchases() {
+
+    inquirer.prompt([{
+        type: 'confirm',
+        name: 'morePurchases',
+        message: 'Do you want to purchase anything else?'
+      }]).then(function(answer) {
+        
+        if (answer.morePurchases === true) {
+            displayProducts();
+        } else {
+            console.log("\nThanks for shopping with Bamazon!")
+        }
+      });
+}
 
 //Update quantity after customer purchase
 function updateInventory() {
@@ -153,4 +170,5 @@ function updateInventory() {
             }
         ]
     )
+    morePurchases()
 }
