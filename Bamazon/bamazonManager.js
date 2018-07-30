@@ -37,7 +37,21 @@ managerChoices();
 totalChoices();
 
 //Creates an array of department options
+function departmentArr() {
+    var query = "SELECT * FROM departments"
 
+    connection.query(query, function(err,res){
+        for (var i = 0; i < res.length; i++) {
+
+            var ID = res[i].id
+            var Name = res[i].department_name
+
+            var LoggedName = ID + ". " + Name
+
+            depArr.push(LoggedName)
+        }
+    })
+}
 
 //Check to see how many product options exist;
 function totalChoices() {
@@ -59,7 +73,7 @@ function managerChoices () {
         {
         type: "list",
         message: "Manager View: Choose from options below:",
-        choices: ["View Products for Sale", "View Low Inventory", "Add to Inventory","Add New Product"],
+        choices: ["View Products for Sale", "View Low Inventory", "Add to Inventory","Add New Product","Log Out"],
         name: "ManagerView"
         }
     ])
@@ -82,6 +96,11 @@ function managerChoices () {
 
             case "Add New Product":
                 createProduct();
+            break;
+
+            case "Log Out":
+                console.log("\nYou are now logged out of your session.");
+                connection.end();
             break;
         }
 
@@ -223,7 +242,7 @@ function createProduct() {
       {
         type: "list",
         message: "What department do you want to place product in?",
-        choices: ["1. Aerial", "2. Clothing", "3. Music"],
+        choices: depArr,
         name: "prodDepartment"
       },
       {

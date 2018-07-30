@@ -36,7 +36,7 @@ function supervisorChoices() {
         {
         type: "list",
         message: "Manager View: Choose from options below:",
-        choices: ["View Product Sales by Department", "Create New Department"],
+        choices: ["View Product Sales by Department", "Create New Department","Log Out"],
         name: "SupervisorView"
         }
     ])
@@ -51,6 +51,11 @@ function supervisorChoices() {
 
             case "Create New Department":
                 create_new_dept();
+            break;
+
+            case "Log Out":
+                console.log("\nYou are now logged out of your session.");
+                connection.end();
             break;
         }
 
@@ -93,7 +98,9 @@ function product_sales_department() {
         } 
 
         //Show Table Result
-        console.log('\n' + table.toString());
+        console.log('\n' + table.toString() + "\n");
+
+        supervisorChoices();
     });
 }
 
