@@ -129,7 +129,7 @@ function create_new_dept() {
 
         // Show user output
         console.log("\nNew Department Name: " + deptName)
-        console.log("Assigned Product Overhead: " + '$'+commaNumber(Number(Overhead).toFixed(2)))
+        console.log("Assigned Product Overhead: " + '$'+commaNumber(Number(Overhead).toFixed(2)) + "\n")
 
         // Check Validation on Overhead
         if (Overhead >=0) {

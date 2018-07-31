@@ -261,7 +261,8 @@ function createProduct() {
         //set variables
         var product = answer.prodName;
         var departmentDetails = answer.prodDepartment;
-        var department = departmentDetails.split(".",2);
+        var departSplit = departmentDetails.split(". ",2);
+        var department = departSplit[1];
         var price = parseFloat(answer.prodPrice);
         var quantity = parseInt(answer.prodQuantity);
         var deptNum = parseInt(departmentDetails.split(".",1))
@@ -304,9 +305,6 @@ function confirm_and_Add_New(product,deptNum,department,price,quantity) {
             managerChoices();
 
         } else {
-            
-            // Insert new product into  SQL database
-            console.log("New Product has been added.\n");
 
             connection.query(
                 "INSERT INTO products SET ?",
@@ -316,12 +314,12 @@ function confirm_and_Add_New(product,deptNum,department,price,quantity) {
                     department_name: department,
                     price: price,
                     stock_quantity: quantity,
-                    product_sales: 0
+                    product_sales: 0.00
                 }
-            )
+            );
 
-            managerChoices();
             totalChoices();
+            managerChoices();
         }
     });
 }
@@ -335,7 +333,7 @@ function confirm_and_update_inventory(ID,productName,productInventory,inventory)
       }]).then(function(answer) {
         
         // If answer is "no" then go back to main menu
-        if (answer.reviewChoices === false) {
+        if (answer.reviewNewEntry === false) {
             console.log("No inventory was added")
             managerChoices();
         } else {     
