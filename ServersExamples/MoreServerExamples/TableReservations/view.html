@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+    <title>Tables Page</title>
+    
+    
+    <!-- Added link to the jQuery Library -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <!-- Added a link to Bootstrap-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    
+    <!--Links to Google Fonts and Font Awesome-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="jumbotron text-center">
+            <h1><span class="fas fa-fire"></span> Hot Restaurant</h1>
+            <h3>Current Reservations and Waiting List</h3>
+            <hr>
+            <a href="/add"><button class="btn btn-danger btn-lg"><i class="fas fa-calendar-alt"></i> Make Reservation</button></a>
+        </div>
+
+		<div class="row">
+                <div class="col-lg-12">
+    
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">Current Reservations</h4>
+                        </div>
+                        <div class="panel-body" id="reserved">
+                        </div>
+                    </div>
+    
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">Waiting List</h4>
+                        </div>
+                        <div class="panel-body" id="waitlist">
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+    
+            <footer class="footer">
+              <div class="container">
+                  <p>Control Panel</p>
+                <p><a href="#" id="clear">Clear Table</a> | <a href="/api/tables">API Table Link</a> | <a href="/api/waitlist">API Wait List</a></p>
+              </div>
+            </footer>
+    </div>
+
+  </body>
+  </html>
+
+
