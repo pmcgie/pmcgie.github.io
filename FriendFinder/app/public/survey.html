@@ -169,17 +169,16 @@
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title">Modal title</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <h5 class="modal-title"></h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="closemodal01">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
             <div class="modal-body">
-              <p>Modal body text goes here.</p>
+              <p></p>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-primary">Save changes</button>
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal" id="closemodal02">Close</button>
             </div>
           </div>
         </div>
@@ -203,8 +202,20 @@
 
     // Input Variables
     var nameValue, imgValue, q1Value, q2Value, q3Value, q4Value, q5Value, q6Value, q7Value, q8Value, q9Value, q10Value
-      
-    // Get variable Values
+
+    // Hide modal and go back to home page
+    $('#closemodal01').click(function() {
+        $('.modal').hide();
+        window.location.href = "home.html";
+    });
+
+    // Hide modal and go back to home page
+    $('#closemodal02').click(function() {
+        $('.modal').hide();
+        window.location.href = "home.html";
+    });
+
+    // Trigger Event once submitted
     $('#submit').on('click', function(event) {
         
         // Best Practice
@@ -226,8 +237,8 @@
 
 
         // Check to see if all questions answered
-        if (nameValue !='' && imgValue !='' && q1Value!='' && q2Value !='' && q3Value !='' && q4Value !='' &&
-            q5Value != '' && q6Value!='' && q7Value !='' && q8Value !='' & q9Value !='' && q10Value != '') {
+        if (nameValue !='' && imgValue !='' && !isNaN(q1Value) && !isNaN(q2Value) && !isNaN(q3Value) && !isNaN(q4Value) &&
+            !isNaN(q5Value) && !isNaN(q6Value) && !isNaN(q7Value) && !isNaN(q8Value) && !isNaN(q9Value) && !isNaN(q10Value)) {
 
             // Place values into new variable (person)
             var newPerson = {
@@ -251,12 +262,17 @@
                     console.log("------------------------------------");
 
                     // Here we then log the NYTData to console, where it will show up as an object.
-                    console.log(tableData);
+                    console.log(peopleData);
                     console.log("------------------------------------");
 
                     // Find that Friend!
-                    var friend = findFriend(peopleData);
+                    var friend = findFriend(peopleData,newPerson);
+
+                    // Show suggested friend in modal
+                    $(".modal-title").text("Best Match");
+                    $(".modal-body").html("<p>We suggest you become friends with:</p><p>" + friend.name + "</p><img src='" + friend.pic + "' style='width:200px;height:200px;'>")
                     
+                    $(".modal").show();
 
                 });
 
@@ -272,32 +288,68 @@
         $.post("/api/friends",newPerson, function(data){
 
             //Clear Form when submitted
-            $("#name").val('');
-            $("#pic").val('');
-            $("#Q01").val('');
-            $('#Q02').val('');
-            $('#Q03').val('');
-            $('#Q04').val('');
-            $('#Q05').val('');
-            $('#Q06').val('');
-            $('#Q07').val('');
-            $('#Q08').val('');
-            $('#Q09').val('');
-            $('#Q10').val('');
-
+            $("#name").text('');
+            $("#pic").text('');
+            $("#Q01").text('');
+            $('#Q02').text('');
+            $('#Q03').text('');
+            $('#Q04').text('');
+            $('#Q05').text('');
+            $('#Q06').text('');
+            $('#Q07').text('');
+            $('#Q08').text('');
+            $('#Q09').text('');
+            $('#Q10').text('');
 
         })
     }
 
     // Function to run through and return match for individual
-    function findFriend(peopleData) {
+    function findFriend(peopleData, newPerson) {
 
-        // Friend that gets returned
-        
+        // Variables
+        var curMin = 50;
+        var curSuggestion = "NA"
+        var curPic = "NA"
+
+        // Nested Loop: loop through all data and then questions within object to find closeness
+        for (x=0; x < peopleData.length; x++) {
+
+            // Variables
+            var closeness = 0;
+            
+            // Check to see if it is new person
+            if (peopleData[x].name != newPerson.name) {
+
+
+                // Loop goes 10X (10 Questions)
+                for (y = 0; y < 10; y ++) {
+
+                    var Diff = Math.abs(newPerson.scores[y] - peopleData[x].scores[y]);
+                    
+                    closeness = Diff + closeness
+
+                }
+                
+
+                // Check to see if current person is closer match
+                if(closeness < parseInt(curMin)) {
+                    curSuggestion = peopleData[x].name
+                    curPic = peopleData[x].photo
+                    curMin = closeness
+                }
+
+            }
+
+        }
+
+        // Return closest match
+        return {
+            name: curSuggestion,
+            pic: curPic
+        };
 
     }
-
-        //
 
   </script>
 
