@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="UTF-8">
+  <title>FriendFinder</title>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Added link to the jQuery Library -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <!-- Added a link to Bootstrap-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
+    <!--Links to Google Fonts and Font Awesome-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+
+</head>
+
+<body>
+
+  <div class="container">
+
+    <!--Name and Photo-->
+    <h2>Survey Questions</h2>
+    <hr>
+
+    <h4><strong>About You</strong></h4>
+    <h5>Name (Required)</h5>
+    <input type="text" id="name" class="form-control" required>
+
+    <h5>Link to Photo Image (Required)</h5>
+    <input type="text" id="pic" class="form-control" required>
+
+    <hr>
+
+    <!--10 Questions-->
+
+    <!--Question #01-->
+    <h3><strong>Question 1</strong></h3>
+    <h5>You are a sports fan.</h5>
+    <select class="form-control" style="width: 200px; margin-bottom: 20px;" Id = "Q01">
+        <option value=""></option>
+        <option value="1">1 (Strongly Agree)</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5 (Strongly Disagree)</option>
+    </select>
+
+    <!--Question #02-->
+    <h3><strong>Question 2</strong></h3>
+    <h5>You consider yourself an introvert versus an extrovert.</h5>
+    <select class="form-control" style="width: 200px; margin-bottom: 20px;" Id = "Q02">
+        <option value=""></option>
+        <option value="1">1 (Strongly Agree)</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5 (Strongly Disagree)</option>
+    </select>
+
+    <!--Question #03-->
+    <h3><strong>Question 3</strong></h3>
+    <h5>You love to dance, and will dance anywhere.</h5>
+    <select class="form-control" style="width: 200px; margin-bottom: 20px;" Id = "Q03">
+        <option value=""></option>
+        <option value="1">1 (Strongly Agree)</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5 (Strongly Disagree)</option>
+    </select>
+
+    <!--Question #04-->
+    <h3><strong>Question 4</strong></h3>
+    <h5>You consider yourself adventurous and do or would like to do activities such as skydiving, bungee jumping, or white water rafting.</h5>
+    <select class="form-control" style="width: 200px; margin-bottom: 20px;" Id = "Q04">
+        <option value=""></option>
+        <option value="1">1 (Strongly Agree)</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5 (Strongly Disagree)</option>
+    </select>
+
+    <!--Question #05-->
+    <h3><strong>Question 5</strong></h3>
+    <h5>You like to plan things out versus having spontaneity.</h5>
+    <select class="form-control" style="width: 200px; margin-bottom: 20px;" Id = "Q05">
+        <option value=""></option>
+        <option value="1">1 (Strongly Agree)</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5 (Strongly Disagree)</option>
+    </select>
+
+    <!--Question #06-->
+    <h3><strong>Question 6</strong></h3>
+    <h5>You tend to agree with other people's opinions and avoid controversy.</h5>
+    <select class="form-control" style="width: 200px; margin-bottom: 20px;" Id = "Q06">
+        <option value=""></option>
+        <option value="1">1 (Strongly Agree)</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5 (Strongly Disagree)</option>
+    </select>
+    <br>
+  
+    <!--Question #07-->
+    <h3><strong>Question 7</strong></h3>
+    <h5>You have an eclectic taste of music.</h5>
+    <select class="form-control" style="width: 200px; margin-bottom: 20px;" Id="Q07">
+        <option value=""></option>
+        <option value="1">1 (Strongly Agree)</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5 (Strongly Disagree)</option>
+    </select>
+    <br>
+
+    <!--Question #08-->
+    <h3><strong>Question 8</strong></h3>
+    <h5>When you go on vacation, you prefer relaxing on the beach versus being continuously occupied with an event or activity.</h5>
+    <select class="form-control" style="width: 200px; margin-bottom: 20px;" Id="Q08">
+        <option value=""></option>
+        <option value="1">1 (Strongly Agree)</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5 (Strongly Disagree)</option>
+    </select>
+    <br>
+
+    <!--Question #09-->
+    <h3><strong>Question 9</strong></h3>
+    <h5>It's easy for you to understand other people's perspectives.</h5>
+    <select class="form-control" style="width: 200px; margin-bottom: 20px;" Id="Q09">
+        <option value=""></option>
+        <option value="1">1 (Strongly Agree)</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5 (Strongly Disagree)</option>
+    </select>
+    <br>
+
+    <!--Question #10-->
+    <h3><strong>Question 10</strong></h3>
+    <h5>You prefer structure at your work over ambiguity.</h5>
+    <select class="form-control" style="width: 200px; margin-bottom: 20px;" Id="Q10">
+        <option value=""></option>
+        <option value="1">1 (Strongly Agree)</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5 (Strongly Disagree)</option>
+    </select>
+    <br>
+
+    <!--Modal (pop-up to show suggested friend)-->
+    <div class="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Modal title</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <p>Modal body text goes here.</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary">Save changes</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+    </div>
+
+
+    <!-- Submittal Button -->
+    <button type="submit" class="btn btn-info" id="submit" style="width: 100%">Submit</button>
+    <hr>
+
+    <footer class="footer">
+        <div class="container">
+            <p><a href="/api/friends">API Friends List</a> | <a href="https://github.com/pmcgie/pmcgie.github.io/tree/master/FriendFinder">GitHub Repo</a></p>
+        </div>
+    </footer>
+  
+  </div>
+
+  <!--Javascript - Logic-->
+  <script>
+
+    // Input Variables
+    var nameValue, imgValue, q1Value, q2Value, q3Value, q4Value, q5Value, q6Value, q7Value, q8Value, q9Value, q10Value
+      
+    // Get variable Values
+    $('#submit').on('click', function(event) {
+        
+        // Best Practice
+        event.preventDefault();
+
+        // Values
+        nameValue = $("#name").val();
+        imgValue = $("#pic").val();
+        q1Value = parseInt($("#Q01").val());
+        q2Value = parseInt($('#Q02').val());
+        q3Value = parseInt($('#Q03').val());
+        q4Value = parseInt($('#Q04').val());
+        q5Value = parseInt($('#Q05').val());
+        q6Value = parseInt($('#Q06').val());
+        q7Value = parseInt($('#Q07').val());
+        q8Value = parseInt($('#Q08').val());
+        q9Value = parseInt($('#Q09').val());
+        q10Value = parseInt($('#Q10').val());
+
+
+        // Check to see if all questions answered
+        if (nameValue !='' && imgValue !='' && q1Value!='' && q2Value !='' && q3Value !='' && q4Value !='' &&
+            q5Value != '' && q6Value!='' && q7Value !='' && q8Value !='' & q9Value !='' && q10Value != '') {
+
+            // Place values into new variable (person)
+            var newPerson = {
+                name: nameValue,
+                photo: imgValue,
+                scores: [q1Value,q2Value,q3Value,q4Value,q5Value,q6Value,q7Value,q8Value,q9Value,q10Value]
+            };
+
+            // Add another person to JSON
+            addFriend(newPerson);
+
+            // Now it's time to pull JSON of Friends
+            var currentURL = window.location.origin;
+            
+            $.ajax({ url: currentURL + "/api/friends", method: "GET"})
+                .then(function(peopleData) {
+                    
+                    // Here we are logging the URL so we have access to it for troubleshooting
+                    console.log("------------------------------------");
+                    console.log("URL: " + currentURL + "/api/friends");
+                    console.log("------------------------------------");
+
+                    // Here we then log the NYTData to console, where it will show up as an object.
+                    console.log(tableData);
+                    console.log("------------------------------------");
+
+                    // Find that Friend!
+                    var friend = findFriend(peopleData);
+                    
+
+                });
+
+
+        } else {
+            alert("You need to select or enter a value for each question.")
+        }
+
+    });
+
+    // Function to post new data to api/friends
+    function addFriend(newPerson) {
+        $.post("/api/friends",newPerson, function(data){
+
+            //Clear Form when submitted
+            $("#name").val('');
+            $("#pic").val('');
+            $("#Q01").val('');
+            $('#Q02').val('');
+            $('#Q03').val('');
+            $('#Q04').val('');
+            $('#Q05').val('');
+            $('#Q06').val('');
+            $('#Q07').val('');
+            $('#Q08').val('');
+            $('#Q09').val('');
+            $('#Q10').val('');
+
+
+        })
+    }
+
+    // Function to run through and return match for individual
+    function findFriend(peopleData) {
+
+        // Friend that gets returned
+        
+
+    }
+
+        //
+
+  </script>
+
+</body>
+</html>
