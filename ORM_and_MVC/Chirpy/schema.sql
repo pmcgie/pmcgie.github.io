@@ -1,0 +1,13 @@
+CREATE DATABASE chirpy;
+USE chirpy;
+
+CREATE TABLE chirps (
+
+  -- TABLE CODE TO GO HERE
+  id INT not NULL AUTO_INCREMENT,
+  chirper VARCHAR(100) NOT NULL,
+  chirp VARCHAR(250) NOT NULL,
+  created_at DATETIME NOT NULL,
+  PRIMARY KEY (id)
+
+);
