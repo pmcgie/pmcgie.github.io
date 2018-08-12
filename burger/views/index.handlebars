@@ -1,6 +1,6 @@
 <!--Create Main Header-->
 <div class="jumbotron jumbotron-fluid">
-    <img src="../public/assets/img/BurgerImg.jpg" alt="BurgerApp">
+    <img src="../assets/img/burger.png" alt="Burger">
     <h1>Eat-Da-Burger!</h1>
 </div>
 
@@ -18,7 +18,6 @@
                 {{#each burgers}}
                     {{#unless this.devoured}}
                         <li>
-                            {{this.id}}
                             {{this.burger_name}}
 
                             <form action="/{{this.id}}?_method=PUT" method="POST">
@@ -34,7 +33,7 @@
 
         <!--Burgers that are already devoured-->
         <div class="col-md-6">
-            <h3>Too Late! These Burgers have already been Consumed!</h3>
+            <h3>Too Late! These ones have been Consumed!</h3>
                 {{#each burgers}}
                     {{#if this.devoured}}
                         <li>

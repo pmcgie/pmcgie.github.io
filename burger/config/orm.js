@@ -63,9 +63,8 @@ var orm = {
         });
     },
     updateOne: function(table, objColVals, condition, cb) {
-
         var queryString = "UPDATE " + table;
-
+    
         queryString += " SET ";
         queryString += objToSql(objColVals);
         queryString += " WHERE ";
@@ -78,6 +77,17 @@ var orm = {
           }
     
           cb(result);
+        });
+    },
+    deleteOne: function(table,condition,cb) {
+        var queryString = "DELETE FROM " + table;
+        queryString += " WHERE " + condition;
+        connection.query(queryString, function (err,result) {
+            if (err) {
+                throw err;
+                }
+        
+            cb(result);
         });
     }
 }

@@ -12,10 +12,15 @@ var burger = {
             cb(res);
         });
     },
-    update: function(condition,cb) {
+    update: function(objColVals,condition,cb) {
         orm.updateOne("burgers", objColVals, condition, function(res) {
             cb(res);
         });
+    },
+    delete: function(condition,cb) {
+        orm.deleteOne("burgers",condition,function(res) {
+            cb(res);
+        })
     }
 };
 
