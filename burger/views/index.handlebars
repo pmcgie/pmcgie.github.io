@@ -1,0 +1,62 @@
+<!--Create Main Header-->
+<div class="jumbotron jumbotron-fluid">
+    <img src="../public/assets/img/BurgerImg.jpg" alt="BurgerApp">
+    <h1>Eat-Da-Burger!</h1>
+</div>
+
+<br>
+
+<!--Devoured vs not Devoured-->
+<div class="container">
+    <div class="row">
+        <!--Burgers that can be eaten-->
+        <div class="col-md-6">
+
+            <h3>Burgers Ready to Eat!</h3>
+
+            <ul>
+                {{#each burgers}}
+                    {{#unless this.devoured}}
+                        <li>
+                            {{this.id}}
+                            {{this.burger_name}}
+
+                            <form action="/{{this.id}}?_method=PUT" method="POST">
+                                <input type="hidden" name="devoured" value="true">
+                                <button class="btn-primary" type="submit">Eat Da Burger!</button>
+                            </form>
+                        </li>
+                    {{/unless}}
+                {{/each}}
+            </ul>
+
+        </div>
+
+        <!--Burgers that are already devoured-->
+        <div class="col-md-6">
+            <h3>Too Late! These Burgers have already been Consumed!</h3>
+                {{#each burgers}}
+                    {{#if this.devoured}}
+                        <li>
+                            {{this.id}}
+                            {{this.burger_name}}
+                        </li>
+                    {{/if}}
+                {{/each}}
+        </div>
+    </div>
+
+    <!--Allow user to create a burger-->
+    <div class="row">
+        <div class="col-md-12">
+
+            <h3>Create a Burger!</h3>
+
+            <form class="form-group">
+                <label for="burg">Burger Name: </label>
+                <input type="text" id="burg" name="burg_name"> 
+            </form>
+            <button class="btn btn-primary" type="submit">Submit New Burger</button>
+        </div>
+    </div>
+</div>
