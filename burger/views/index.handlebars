@@ -1,15 +1,14 @@
 <!--Create Main Header-->
-<div class="jumbotron jumbotron-fluid">
-    <img src="../assets/img/burger.png" alt="Burger">
-    <h1>Eat-Da-Burger!</h1>
+<div class="jumbotron jumbotron-fluid" id="mainHeader">
+    <img src="../assets/img/burger.png" width="150px;" height= "150px;" alt="Burger">
+    <h1>Crazy Burger!</h1>
+    <h4>Your Favorite Most Pointless Burger App!</h4>
 </div>
 
-<br>
-
-<!--Devoured vs not Devoured-->
+<!--Devoured vs not Devoured: runs through db and populates-->
 <div class="container">
     <div class="row">
-        <!--Burgers that can be eaten-->
+        <!--Burgers Available-->
         <div class="col-md-6">
 
             <h3>Burgers Ready to Eat!</h3>
@@ -20,10 +19,11 @@
                         <li>
                             {{this.burger_name}}
 
-                            <form action="/{{this.id}}?_method=PUT" method="POST">
+                            <form>
                                 <input type="hidden" name="devoured" value="true">
-                                <button class="btn-primary" type="submit">Eat Da Burger!</button>
+                                <button class="devourForm" data-id="{{this.id}}" id="newBurg" type="submit">Eat Me!</button>
                             </form>
+                            <br>
                         </li>
                     {{/unless}}
                 {{/each}}
@@ -31,13 +31,12 @@
 
         </div>
 
-        <!--Burgers that are already devoured-->
+        <!--Burgers that are already consumed-->
         <div class="col-md-6">
-            <h3>Too Late! These ones have been Consumed!</h3>
+            <h3>Burgers Already Consumed!</h3>
                 {{#each burgers}}
                     {{#if this.devoured}}
                         <li>
-                            {{this.id}}
                             {{this.burger_name}}
                         </li>
                     {{/if}}
@@ -51,11 +50,11 @@
 
             <h3>Create a Burger!</h3>
 
-            <form class="form-group">
-                <label for="burg">Burger Name: </label>
+            <form>
+                <label>Burger Name: </label>
                 <input type="text" id="burg" name="burg_name"> 
+                <button class="newburgForm" type="submit">Submit New Burger</button>
             </form>
-            <button class="btn btn-primary" type="submit">Submit New Burger</button>
         </div>
     </div>
 </div>
