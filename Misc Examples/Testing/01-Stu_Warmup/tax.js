@@ -6,7 +6,7 @@ var calculateTax = function(price) {
 
 module.exports = calculateTax;
 
-/*
+
 // Replace with code below to speed things up! 
 // Point of the exercise is to use mocha + chai in test/tax.test.js!
 
@@ -19,4 +19,4 @@ var calculateTax = function(price) {
 };
 
 module.exports = calculateTax;
-*/
+
