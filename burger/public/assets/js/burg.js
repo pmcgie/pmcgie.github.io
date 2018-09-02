@@ -13,10 +13,11 @@ $(document).ready(function() {
             data: objColVals
         }).then(
             function() {
-                location.reload();
             }
             
         );
+
+        location.reload();
 
     });
 
