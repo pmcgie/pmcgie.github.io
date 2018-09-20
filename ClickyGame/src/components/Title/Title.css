@@ -1,7 +1,11 @@
 .header{
-	background-color: #ccc;
+	background-color:rgb(237, 29, 36);
 	position: relative;
 	width: 100%;
+	color: white;
+	border: 1px solid black;
+	border-radius: 5px;
+	margin-top: 90px
 }
 
 h1{
@@ -11,7 +15,7 @@ h1{
 	padding: 20px 0 20px 0; 
 }
 
-h2{
+h4{
 	text-align: center;
 	font-size: 25px;
 	padding-bottom: 40px;

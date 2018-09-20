@@ -1,0 +1,31 @@
+.navbar {
+    background: black;
+    box-shadow: 0 3px 6px #999, 0 3px 6px #999;
+}
+
+.navbar li {
+    display: inline-block;
+    text-align: center;
+}
+  
+.LeftText {
+    width: 25%;
+}
+  
+.CenterText {
+    width: 30%;
+}
+
+.RightText {
+width: 45%;
+}
+
+
+li {
+color: white;
+padding: 15px 0;
+}
+
+body {
+font-size: 20px;
+}
