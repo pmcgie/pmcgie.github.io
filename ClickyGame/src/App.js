@@ -8,12 +8,32 @@ import Title from "./components/Title";
 import Divider from "./components/Divider";
 
 class App extends Component {
-  // Setting this.state.friends to the marvel json array
+
   state = {
-    Cards
+    Cards,
+    Score: 0,
+    TopScore: 0
   };
 
-  // Map over this.state.friends and render a marvelCard component for each marvel object
+  componentDidMount() {
+    this.setState({ Cards: this.shuffle(this.state.Cards) });
+  }
+
+  shuffle = data => {
+
+    let i = data.length - 1;
+
+    while (i > 0) {
+      const randomIndex = Math.floor(Math.random() * (i + 1));
+      const itemAtIndex = data[i];
+      data[i] = data[randomIndex];
+      data[randomIndex] = itemAtIndex;
+      i--;
+    }
+    return data;
+
+  };
+
   render() {
     return (
       <Wrapper>

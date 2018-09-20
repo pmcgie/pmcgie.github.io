@@ -7,7 +7,7 @@ const Navbar = props => (
          <ul>
           <li className="LeftText">Test Your Memory and Your Might!</li>
           <li className="CenterText"></li>
-          <li className="RightText">Score:</li>
+          <li className="RightText">Score: {props.Score} | Top Score: {props.TopScore}</li>
         </ul>
       </nav>
 );
