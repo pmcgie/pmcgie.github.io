@@ -7,19 +7,28 @@ import "./App.css";
 import Title from "./components/Title";
 import Divider from "./components/Divider";
 
+const maxValue = Cards.length;
+
 class App extends Component {
 
   state = {
     Cards,
+    clickedCards: [],
     Score: 0,
-    TopScore: 0
+    TopScore: 0,
   };
 
   componentDidMount() {
-    this.setState({ Cards: this.shuffle(this.state.Cards) });
+    this.setState({ Cards: this.shuffleCards(this.state.Cards) });
   }
 
-  shuffle = data => {
+
+  shuffleCards = () => {
+    const shuffleCards = this.shuffleArr(Cards)
+    this.setState({Cards:shuffleCards})
+  }
+
+  shuffleArr = (data) => {
 
     let i = data.length - 1;
 
@@ -34,21 +43,63 @@ class App extends Component {
 
   };
 
+
+  handleClick = id => {
+
+    if (this.state.clickedCards.includes(id)) {
+      this.resetCards();
+    }
+
+    else {
+
+      const newScore = this.state.Score + 1
+
+      if (newScore > this.state.TopScore) {
+        this.setState({Score:newScore})
+        this.setState({TopScore: newScore})
+      }
+
+      if (newScore === maxValue) {
+        this.resetCards();
+      }
+
+      else {
+        this.setState({selected:this.state.clickedCards.push(id)})
+        this.setState({Score:newScore})
+        this.shuffleCards()
+      }
+    }
+    
+  }
+
+
+  resetCards = () => {
+
+    this.setState({Score:0})
+    this.setState({clickedCards:[]})
+    this.shuffleCards()
+
+  }
+
+
   render() {
     return (
-      <Wrapper>
-        <Navbar score={this.state.score} topScore={this.state.topScore}></Navbar>
+      <div>
+        <Navbar Score={this.state.Score} TopScore={this.state.TopScore}></Navbar>
         <Title></Title>
         <Divider></Divider>
-        {this.state.Cards.map(card => (
+        <Wrapper>
+        {Cards.map(card => (
           <ClickCard
             id={card.id}
             key={card.id}
             name={card.name}
             image={card.image}
+            handleClick={this.handleClick}
           />
         ))}
       </Wrapper>
+      </div>
     );
   }
 }
