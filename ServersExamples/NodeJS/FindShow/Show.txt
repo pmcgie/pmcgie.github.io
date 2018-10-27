@@ -1,5 +1,0 @@
-Show: The Simpsons
-,Genre: Comedy, Family
-,Rating: 8.5
-,Network: FOX
-,Summary: <p><b>The Simpsons</b> is the longest running scripted show in US television history. It captures the adventures of Homer, Marge, Maggie, Bart and Lisa who are living in a fictional town called Springfield.</p>
